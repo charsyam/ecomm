@@ -1,0 +1,159 @@
+@charset "utf-8";
+/**background:url(/image/bg1.gif); background-repeat:repeat-x;*/
+body {font-family: Malgun Gothic,Gulim;color:#888888;padding:0px;margin:0px;text-align: center;font-size:9pt;}
+input,textarea {padding-left:5px;font-family: Malgun Gothic,Gulim;}
+p {font-size:11pt;line-height: 100%;}
+a {color:#1A1C22;text-decoration:none;}
+a:hover {color:#1A1C22;}
+a img {border:none;}
+
+h2 {margin:0;padding:0 0 10px 0;color:#1A1C22;font-family:century gothic;font-weight:normal;font-size:10pt;}
+
+.clear:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    width: 0;
+}
+
+.wrap {text-align: left; margin:0 auto;padding:0 10px 0 10px; width:980px;}
+.bg {background:url(/image/bg3.gif); background-repeat:repeat-x;}
+.header {position:fixed;top:0;left:0%;width:100%;height:67px;z-index:1000px;padding-top:2px;margin-bottom:7px;z-index:999;text-align:center;}
+.gnb_top{height:25px;width:100%;text-align:right;}
+.gnb_top a {font-weight:normal;color:#6292C0}
+.gnb_top a:hover {text-decoration:underline;}
+.logo {position:absolute; top:4px; left:0px; z-index:1;}
+.footer {clear: left;line-height:160%;font-size:8pt;color:#888;padding:25px 10px 25px 10px;background:#1A1C22;}
+.right{position:absolute; top:0px; left:990px; width:120px;border:1px dotted #888;}
+
+.body {margin-top:110px;}
+
+.deal_main {position:relative;padding:7px;width:638px; height:377px; overflow:hidden;background:#e4e4e4;}
+.deal_main_exp {padding:3px 0px 3px 0px;position:relative; top:0px; left:0px; width:980px; overflow:hidden;background:#e4e4e4;}
+.deal_main:hover {background:#D21A39;}
+
+.deal_sub {padding:7px;background:#e4e4e4;margin-bottom:7px;}
+.deal_sub_exp {padding:3px 0px 3px 0px;position:relative; top:0px; left:0px; width:980px; overflow:hidden;background:#e4e4e4;}
+.deal2-1_exp a {color:#888;font-weight:bold;}
+.deal_sub:hover {background:#D21A39;}
+
+.deal_typeD_sub {}
+.deal_typeD_sub:hover {background:#D21A39;}
+
+.deal2 {width:308px;font-size:10pt;padding:7px;background:#e4e4e4;}
+.deal_exp2 {padding:3px 0px 0px 0px;position:relative; top:0px; left:0px; width:308px; overflow:hidden;background:#e4e4e4;}
+.deal2:hover {background:#D21A39;}
+
+.deal2-1 {position:relative;width:637px;font-size:10pt;padding:7px;background:#e4e4e4;}
+.deal2-1_exp {position:absolute;top:7px;left:7px;padding:3px 0;width:637px;overflow:hidden;background:#000;z-index:5;}
+.deal2-1:hover {background:#D21A39;}
+
+.deal2-2 {position:relative;width:1010;font-size:10pt;padding:7px;background:#e4e4e4;}
+.deal2-2_exp {position:absolute;top:7px;left:7px;padding:3px 0;width:965px;overflow:hidden;background:#000;z-index:5;}
+.deal2-2:hover {background:#D21A39;}
+
+.deal3 {width:232px;font-size:10pt;padding:7px;background:#e4e4e4;}
+.deal_exp3 {padding:3px 0px 0px 0px;position:relative; top:0px; left:0px; width:232px; overflow:hidden;background:#e4e4e4;}
+.deal3:hover {background:#D21A39;}
+
+.deal_2c {width:400px;font-size:10pt;padding:7px;background:#e4e4e4;}
+.dexp_2c_box {padding:3px 0px 0px 0px;position:relative; top:0px; left:0px; width:400px; overflow:hidden;background:#e4e4e4;}
+.dexp_2c:hover {background:#D21A39;}
+
+.mbx2 {}
+.ldeal {margin-bottom:21px;padding:0px 7px 15px 0px;}
+.ldeal ul {list-style:none;margin:0;padding:0;}
+.ldeal li {width:100%;border-bottom:1px solid #e4e4e4;line-height:150%;margin:0;padding:5px 0px 5px 5px;cursor:hand;cursor:pointer;}
+.ldeal ul li:hover {background:#e4e4e4;}
+
+.tb01 {border-spacing:0px;border-collapse:collapse;border:0px;}
+.tb01 td {padding:6px 0px 15px 0px;}
+.tb01 ul{margin:10px;padding:10px;list-style:square;}
+.tb01 li {margin-left:10px;}
+.tb01 img {font-size:11pt;background:#e4e4e4;}
+
+.tb02 {border-spacing:0px; border:1px solid #e4e4e4;width:100%;}
+.tb02 th {padding:3px; border:1px solid #fff; height:28px; background:#e4e4e4;}
+.tb02 td {padding:3px; border:1px solid #E4E4E4}
+
+.explain {line-height:160%;}
+.corner {border-radius:6px; -webkit-border-radius:6px;} 
+.corner4 {border-radius:4px; -webkit-border-radius:4px;} 
+.count {font-weight:bold;font-size:8pt;}
+
+.search_inp {position:absolute;left:57px;font-size:11pt;background:#fff;width:380px; height:32px; border:4px solid #858585;font-family: Malgun Gothic,Gulim;padding-left:5px;font-weight:bold;font-size:12pt;}
+
+.popul {padding:5px 3px 5px 3px; color:#ffffff;}
+.popul a {color:#ffffff;}
+.popul a:hover {color:#ffffff;text-decoration:underline;}
+
+.tmenu {position:absolute;top:3px;left:50%;color:#f2f2f2;margin-left:330px;width:200px;padding:7px 0 4px 0;font-size:9pt;font-weight:bold}
+.tmenu table{height:30px;}
+.tmenu td{border:1px solid #858585;cursor:hand;cursor:pointer;border-radius:6px; -webkit-border-radius:6px;}
+.tmenu td:hover {background:#858585;}
+
+/** background:#F4F4F4;color:#424242;background:#4C505B;*/
+.menu {width:100%;}
+.menu td {background:#4C505B;width:25%;height:34px;text-align:center;vertical-align:middle;color:#fff;font-size:11pt;font-weight:bold;cursor:hand;cursor:pointer;}
+.menu td span{color:#f4f4f4;}
+.menu td:hover {}
+.menu .on {background:#e4e4e4;color:#1A1C22}
+.menu .on span {color:#1A1C22;}
+.menu .count {padding:1px 2px 1px 2px;background:#fff;color:#6A975D;font-size:10px;}
+
+.smenu {position:absolute;top:67px;left:0;width:100%;height:34px;background:#F2F2F0;}
+.smenu table {border:2px solid #858585; border-top:0;border-spacing:0px;margin-bottom:10px;width:100%}
+.smenu td {padding:0 10px 0 10px;height:33px;cursor:hand;cursor:pointer;text-align:center;vertical-align:middle;color:#1A1C22;font-size:9pt;}
+.smenu td:hover {font-weight:bold;background:#e4e4e4;}
+.smenu .on {background:#e4e4e4;font-weight:bold;font-size:9pt;color:#1A1C22;}
+.smenu .count {padding:1px 2px 1px 2px;background:#fff;color:#6A975D;font-size:10px;}
+
+.tab01 {position:absolute;left:750px;top:-3px;margin-bottom:21px;}
+.tab02 {position:absolute;left:800px;top:-3px;margin-bottom:21px;}
+
+/**
+.menu {position:absolute; top:3px; left:788px; z-index:2;}
+.menu ul {list-style:none;margin:0;padding:0;}
+.menu ul li {margin: 0 1px 0 0;padding: 0;border : 0;cursor:hand;cursor:pointer;width:90px;height:42px;float: left;background:#6292C0;text-align:right;color:#fff;font-size:10pt;font-weight:bold;}
+.menu ul li:hover {background:#4377AA;}
+.menu .on {background:#D21A39;}
+.menu .count {padding:1px 2px 1px 2px;background:#fff;color:#6A975D;font-size:10px;}
+*/
+
+.menu2 {width:200px;background:#fff;float:left;}
+.menu2 table {border-spacing:0px;border-collapse:collapse;border:0px;width:98px;margin:0 0 25px 0;}
+.mtb1 th {padding:0 7px 0 7px;cursor:hand;cursor:pointer;width:69px;height:20px;text-align:left;color:#1A1C22;font-size:10pt;font-weight:bold;}
+.mtb1 td {padding:0 7px 0 7px;cursor:hand;cursor:pointer;width:69px;height:20px;text-align:left;color:#6292C0;font-size:9pt;}
+
+.mtb1 th:hover {text-decoration:underline;font-weight:bold;}
+.mtb1 td:hover {text-decoration:underline;font-weight:bold;}
+.mtb1 a {color:#6292C0;font-size:9pt;font-weight:normal;}
+.mtb1 a:hover {text-decoration:underline;font-weight:bold;}
+.mtb1 .on {background:#D6D6D3;}
+.mtb1 .on2 {text-decoration:underline;font-weight:bold;}
+.mtb1 .count {color:#6A975D;font-size:10px;}
+
+.page01 {padding:0 0 10px 0;text-align:right;}
+.page01 ul {list-style:none;margin:0;padding:0;text-align:right;}
+.page01 ul li {display:inline-block;width:50px;background:#e4e4e4;color:#1A1C22;padding:2px 4px;border:0;text-align:center;cursor:hand;cursor:pointer;}
+.page01 ul li:hover {font-weight:bold;}
+.page01 .on {background:#4C505B;color:#fff;font-weight:bold;}
+.page01 .num {width:25px;}
+
+
+.list01 {}
+.list01 a {font-weight:normal;color:#858585;}
+.list01 a:hover{color:#1A1C22;}
+.list01 .on{font-weight:bold;color:#1A1C22;}
+
+.fil3 {filter:alpha(opacity=30); opacity:0.3; -moz-opacity:0.3;}
+.fil4 {filter:alpha(opacity=40); opacity:0.4; -moz-opacity:0.4;}
+.fil5 {filter:alpha(opacity=50); opacity:0.5; -moz-opacity:0.5;}
+.fil6 {filter:alpha(opacity=60); opacity:0.6; -moz-opacity:0.6;}
+.fil7 {filter:alpha(opacity=70); opacity:0.7; -moz-opacity:0.7;}
+.fil8 {filter:alpha(opacity=80); opacity:0.8; -moz-opacity:0.8;}
+.fil9 {filter:alpha(opacity=90); opacity:0.9; -moz-opacity:0.9;}
+
+.dimmed {position: fixed;_position :absolute; top:0;left: 0;width :100%; height:100%;background:#32384A;filter :Alpha(opacity= 60);opacity :0.6; z-index:100;}

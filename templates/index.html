@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ page.title }}</title>
+    <link rel="shortcut icon" href="/image/favicon-2.ico" type="image/x-icon">
+    <link rel="icon" href="/image/favicon-1.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="/css/w/style.css" type="text/css" />
+</head>
+<body>
+    <div class="wrap">
+        <div class="header bg fil8"></div>
+        <div class="header" style="background:#504c59;"> 
+
+ 
+<div style="position:relative;width:980px;left:50%;margin-left:-490px;padding:0px;">
+    <form id="searchForm" name="searchForm" method="get" action="/search.html">
+    <input type="hidden" id="page" name="page" value="1"/>
+    <input type="hidden" id="mainMenuId" name="mainMenuId" value=""/>
+    <input type="hidden" id="subMenuId" name="subMenuId" value=""/>
+    <input type="hidden" id="order" name="order" value="HIT"/>
+    <table style="padding:0px;border-spacing:0px;border-collapse:collapse;width:100%;text-align:left;">
+        <tr>
+            <td colspan="3">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="text-align:right;">
+                            <div style="color:#e4e4e4;">{{ page.currenttime }}</div>
+                        </td>
+                        <td style="text-align:right;width:150px;">
+                        {% if page.login == 0 %}
+                            <a class="btn btn-mini btn-info" onclick="loginLayer()">Login</a>
+                            <a class="btn btn-mini " onclick="signupLayer()">Sign Up</a>
+                        {% else  %}
+                            <a class="btn btn-mini btn-info" onclick="logoutLayer()">Logout</a>
+                        {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding:0px;width:200px;">
+                <a href="/index.html"><img src="/image/logo.png" style="width:180px;height:30px;" /></a>
+            </td>
+            <td style="width:500px;">
+                <table class="menu">
+                    <tr>
+                    
+                        <td class="" onclick="goMainMenu('1')">
+                            쇼핑
+                            <span style="font-size:8pt;font-weight:normal;">(1498)</span>
+                        </td>
+                    
+                        <td class="" onclick="goMainMenu('13')">
+                            지역
+                            <span style="font-size:8pt;font-weight:normal;">(920)</span>
+                        </td>
+                    
+                        <td class="" onclick="goMainMenu('34')">
+                            여행/레저
+                            <span style="font-size:8pt;font-weight:normal;">(52)</span>
+                        </td>
+                    
+                        <td class="" onclick="goMainMenu('27')">
+                            문화
+                            <span style="font-size:8pt;font-weight:normal;">(20)</span>
+                        </td>
+                    
+                    </tr>
+                </table>            
+            </td>
+            <td style="text-align:left;">
+                <div style="background:#858585;border:4px solid #858585;padding:0px;margin:0px;">
+                    <input type="text" style="margin:0px;padding:3px;width:230px;" id="query" name="query" onclick="valueSelect(this)" value="" />
+                    <a href="#" onclick="goSearch();"><img src="/image/m_search_32.png" style="width:24px;height:24px;"/></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                            
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+
+<!-- 최근본 상품 -->
+<div id="recentViewBox" style="position:absolute;top:130px;left:50%;margin-left:500px;width:90px;padding:7px 0 4px 0;text-align:left;">
+
+
+
+ 
+
+
+</div>
+
+<div id="dimmedDiv2" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
+    <table style="margin-bottom:10px;width:100%;">
+        <tr>
+            <td style="width:50%;text-align:left;"><h4>가입하기</h4></td>
+            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="/image/close_01.gif"/></a></td>
+        </tr>
+    </table>
+    <form id="signupForm" name="signupForm" method="post" action="/create_user.php">
+    <table style="width:100%;margin-bottom:10px;">
+        <tr>
+        </tr>
+        <tr>
+            <th width="70">이름</th>
+            <td style="text-align:left;">
+                <input type="text" id="name" name="name" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="nameMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">이메일</th>
+            <td style="text-align:left;">
+                <input type="text" id="email" name="email" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="emailMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">패스워드</th>
+            <td style="text-align:left;">
+                <input type="password" id="password" name="password" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="passwordMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">전화번호</th>
+            <td style="text-align:left;">
+                <input type="text" id="phone" name="phone" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="phoneMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">주소</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <textarea id="address" name="address" style="background:#fff;border:1px solid #e4e4e4;width:100%" rows="3"></textarea>
+                <span id="addressMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right;">
+                <button class="btn btn-success" id="subscribeBtn" onclick="signup();return false;">가입</button>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+<div id="dimmedDiv1" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
+    <table style="margin-bottom:10px;width:100%;">
+        <tr>
+            <td style="width:50%;text-align:left;"><h4>로그인</h4></td>
+            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="/image/close_01.gif"/></a></td>
+        </tr>
+    </table>
+    <form id="loginForm" name="loginForm" method="post">
+    <table style="width:100%;margin-bottom:10px;">
+        <tr>
+        </tr>
+        <tr>
+        <tr>
+            <th width="70">이메일</th>
+            <td style="text-align:left;">
+                <input type="text" id="email" name="email" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="emailMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">패스워드</th>
+            <td style="text-align:left;">
+                <input type="password" id="password" name="password" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="lpasswordMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right;">
+                <button class="btn btn-success" id="subscribeBtn" onclick="login();return false;">로그인</button>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+<div id="dimmedDiv3" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
+    <table style="margin-bottom:10px;width:100%;">
+        <tr>
+            <td style="width:50%;text-align:left;"><h4>로그아웃 하시겠습니까?</h4></td>
+            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="/image/close_01.gif"/></a></td>
+        </tr>
+    </table>
+    <form id="logoutForm" name="logoutForm" method="post">
+    <table style="width:100%;margin-bottom:10px;">
+        <tr>
+        </tr>
+        <tr>
+        <tr>
+            <td colspan="2" style="text-align:right;">
+                <button class="btn btn-success" id="subscribeBtn" onclick="logout();return false;">로그아웃</button>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+<script type="text/javascript">
+//  if ($('#searchForm').val() == '') {
+//      $('#query').focus();
+//  }
+    function registeKeyword() {
+        dimmedOff();
+    }
+    
+    function signupLayer() {
+        dimmed.on();
+        $('#dimmedDiv1').fadeOut(300);
+        $('#dimmedDiv3').fadeOut(300);
+        $('#dimmedDiv2').fadeIn(300);
+    }
+    
+    function loginLayer() {
+        dimmed.on();
+        $('#dimmedDiv3').fadeOut(300);
+        $('#dimmedDiv2').fadeOut(300);
+        $('#dimmedDiv1').fadeIn(300);
+    }
+
+    function logoutLayer() {
+        dimmed.on();
+        $('#dimmedDiv1').fadeOut(300);
+        $('#dimmedDiv2').fadeOut(300);
+        $('#dimmedDiv3').fadeIn(300);
+    }
+
+    function dimmedOff() {
+        dimmed.off();
+        $('#dimmedDiv1').fadeOut(300);
+        $('#dimmedDiv2').fadeOut(300);
+        $('#dimmedDiv3').fadeOut(300);
+        return false;
+    };
+    
+    function signup() {
+        var dataString = $("#signupForm").serialize();
+        var url = '/v1/user.php';
+        $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
+                if (data.status == '200') {
+                window.location.reload(true);
+                } else if (data.status == '501') {
+                $('#addressMessage').html(data.message);
+                } else {
+                $('#addressMessage').html(data.message);
+                }
+                }});
+    }
+
+    function login() {
+        var dataString = $("#loginForm").serialize();
+        var url = '/v1/user.php';
+        $.ajax({type:'GET', url:url, async:false, data:dataString, success:function(data) {
+                if (data.status == '200') {
+                window.location.reload(true);
+                } else if (data.status == '501') {
+                $('#lpasswordMessage').html(data.message);
+                } else {
+                $('#lpasswordMessage').html(data.message);
+                }
+                }});
+    }
+    function logout() {
+        var dataString = $("#logoutForm").serialize();
+        var url = '/v1/logout.php';
+        $.ajax({type:'GET', url:url, async:false, data:dataString, success:function(data) {
+                if (data.status == '200') {
+                window.location.reload(true);
+                } else if (data.status == '501') {
+                $('#lpasswordMessage').html(data.message);
+                } else {
+                $('#lpasswordMessage').html(data.message);
+                }
+                }});
+    }
+    function getKeyword() {
+    }
+    
+    function subscribe() {
+    }
+    
+    function recentDealShow(obj, title) {
+        var top = $(obj).position().top + "px";
+        var left = ($(obj).position().left - 233) + "px";
+        $('#recentDealInfo').css({"top": top, "left":left}).show().html(title);
+    }
+    
+    function recentDealHide(obj) {
+        $('#recentDealInfo').hide();
+    }
+</script>
+        </div>
+        <div class="body">
+            
+
+
+
+ 
+
+            
+
+
+
+ 
+<!--
+<div class="right">
+</div>
+-->
+            <div style="position:relative;margin-left:0px;">
+                
+
+
+ 
+
+
+
+
+
+ 
+<div style="position:relative;">
+    <div style="position:relative;width:250px;">
+        <h4>오늘의 추천상품</h4>
+    </div>
+    <div class="tab01 btn-group">
+        <button onclick="goSearchType('SOCIAL_DEAL', 'HIT');" class="btn btn-small btn-info"><i class="icon-heart icon-white"></i> 인기순</button>
+        <button onclick="goSearchType('SOCIAL_DEAL', 'BUY_COUNT');" class="btn btn-small "><i class="icon-shopping-cart icon-white"></i> 구매순</button> 
+        <button onclick="goSearchType('SOCIAL_DEAL', 'PRICE_ROW');" class="btn btn-small "><i class="icon-ok icon-white"></i> 가격순</button>
+    </div>
+</div>
+
+{% if page.hastoday %} 
+<table class="tb01" style="width:100%;">
+    <tr>
+        <td>
+<div class="deal2-2">
+    <div style="position:relative;width:965px; height:212px; overflow:hidden;">
+        <div style="position:absolute; top:-45px; left:0px; z-index:1;">
+            <a href="/view.php?uid={{ page.today.uid }}"><img src="http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg" style="width:9500px;height:367px;"/></a>
+        </div>
+    </div>
+
+    <div class="deal2-2_exp fil8">
+        <div style="line-height:180%;">
+            <span class="label">{{ page.today.label }}</span>
+            <span style="color:#fff;font-weight:bold;font-size:12pt;">{{ page.today.title }}</span>
+            <span style="color:#fff;font-weight:bold;font-size:12pt;">{{ page.today.price }}</span>  
+        </div>
+    </div>
+</div></td>
+    </tr>
+</table>
+{% endif %}
+
+
+<table class="tb01" style="width:100%;">
+{% for item in page.items %}
+{{ item.starttag | safe }}
+<td>
+<div class="deal2">
+    <div style="position:relative;width:308px; height:162px; overflow:hidden;">
+        <div style="position:absolute; top:0px; left:-7px; z-index:1;">
+            <a href="/view.php?uid={{ item.uid }}"><img src="{{ item.image }}" style="width:320px;height:162px;"/></a>
+        </div>
+    </div>
+    <div class="deal_exp2">
+        <div style="line-height:180%;">
+            <span class="label">{{ item.label }}</span>
+            <span>{{ item.title }}</span><br/>
+        </div>
+        <div style="line-height:160%;">
+            <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.price }}</span>  
+            <!--
+            <span style="font-weight:bold;font-size:8pt;color:#888888;">2012-11-22</span>
+            <span style="font-size:8pt;color:#888888;">까지</span> 
+            -->
+        </div>
+    </div>
+</div></td>
+    <td width="7px"></td>
+{{ item.endtag | safe }}
+{% endfor %}
+</table>
+
+ 
+<div style="position:relative;padding-bottom:3px;width:100%;height:30px;margin-bottom:10px;">
+    <div class="page01">
+        <ul>
+            
+            
+            <li onclick="goPage(1);" class="num on" >1</li>
+            
+            <li onclick="goPage(2);" class="num" >2</li>
+            
+            <li onclick="goPage(3);" class="num" >3</li>
+            
+            <li onclick="goPage(4);" class="num" >4</li>
+            
+            <li onclick="goPage(5);" class="num" >5</li>
+            
+            
+            <li onclick="goPage(2);" >다음</li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+            </div>
+        </div>
+        <div class="footer">
+            관리자: webmaster@ecomm.com<br/>
+            ※ 본 사이트는 방송통신대학원의 전자상거래시스템의 텀프로젝트를 위한 사이트입니다. 실제로 구매가 되지 않습니다.
+        </div>
+    </div>
+
+    <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+    <script type="text/JavaScript" src="/css/utils.js"></script>    
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 리포트2.0 로그분석코드 시작 -->
+    <script type="text/javascript">
+    var JsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+    var uname = escape("쿠플");
+    document.write(unescape("%3Cscript id='log_script' src='" + JsHost + "apine002.weblog.cafe24.com/weblog.js?uid=apine002&uname="+uname+"' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <!-- 리포트2.0  로그분석코드 완료 -->   
+</body>
+</html>
+
