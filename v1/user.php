@@ -2,10 +2,12 @@
     session_start();
     header('Content-type: application/json');
 
+    require("../config.php");
+
     $status = '200';
-    $link = mysql_connect('localhost', 'ecomm', 'ecomm1' ) or die('Could not connect: '.mysql_error());
+    $link = mysql_connect( DBHOST, DBUSER, DBPASS ) or die('Could not connect: '.mysql_error());
     if ($link) {
-        mysql_select_db('ecomm');
+        mysql_select_db(DBNAME);
 
         $method = $_SERVER['REQUEST_METHOD'];
         if( $method == "GET" ){
