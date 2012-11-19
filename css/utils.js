@@ -27,8 +27,7 @@ function goSearchType(type, order) {
 }
 
 function goPage(page) {
-	$('#page').val(page);
-	goSearch();
+	location.href = 'index.php?page='+page;
 }
 
 function goMainMenu(mainMenuId) {

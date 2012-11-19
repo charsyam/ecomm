@@ -349,7 +349,7 @@
 <div class="deal2-2">
     <div style="position:relative;width:965px; height:212px; overflow:hidden;">
         <div style="position:absolute; top:-45px; left:0px; z-index:1;">
-            <a href="/ecomm/view.php?uid={{ page.today.uid }}"><img src="http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg" style="width:9500px;height:367px;"/></a>
+            <a href="/ecomm/view.php?id={{ page.today.id }}"><img src="http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg" style="width:9500px;height:367px;"/></a>
         </div>
     </div>
 
@@ -373,7 +373,7 @@
 <div class="deal2">
     <div style="position:relative;width:308px; height:162px; overflow:hidden;">
         <div style="position:absolute; top:0px; left:-7px; z-index:1;">
-            <a href="view.php?uid={{ item.uid }}"><img src="{{ item.image }}" style="width:320px;height:162px;"/></a>
+            <a href="view.php?id={{ item.id }}"><img src="{{ item.image }}" style="width:320px;height:162px;"/></a>
         </div>
     </div>
     <div class="deal_exp2">
@@ -399,21 +399,12 @@
 <div style="position:relative;padding-bottom:3px;width:100%;height:30px;margin-bottom:10px;">
     <div class="page01">
         <ul>
-            
-            
-            <li onclick="goPage(1);" class="num on" >1</li>
-            
-            <li onclick="goPage(2);" class="num" >2</li>
-            
-            <li onclick="goPage(3);" class="num" >3</li>
-            
-            <li onclick="goPage(4);" class="num" >4</li>
-            
-            <li onclick="goPage(5);" class="num" >5</li>
-            
-            
-            <li onclick="goPage(2);" >다음</li>
-            
+{% if page.hasprevpage == 1 %}
+            <li onclick="goPage( {{ page.prevpage }} );">이전</li>
+{% endif %}
+{% if page.hasnextpage == 1 %}
+            <li onclick="goPage( {{ page.nextpage }} );">다음</li>
+{% endif %}
         </ul>
     </div>
 </div>
