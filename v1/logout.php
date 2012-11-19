@@ -3,6 +3,7 @@
     header('Content-type: application/json');
 
     $_SESSION["login"] = 0;
+    $_SESSION["name"] = "";
     $status = '200';
     $messsage = "logout ok";
     $ret = array( 'status' => $status, 'message' => $message, "code" => 0, "more_info" => "http://localhost/errors/2003" );

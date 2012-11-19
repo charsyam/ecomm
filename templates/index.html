@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>{{ page.title }}</title>
-    <link rel="shortcut icon" href="/image/favicon-2.ico" type="image/x-icon">
-    <link rel="icon" href="/image/favicon-1.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="/css/w/style.css" type="text/css" />
+    <link rel="shortcut icon" href="image/favicon-2.ico" type="image/x-icon">
+    <link rel="icon" href="image/favicon-1.ico" type="image/x-icon">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="css/w/style.css" type="text/css" />
 </head>
 <body>
     <div class="wrap">
@@ -26,7 +26,7 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="text-align:right;">
-                            <div style="color:#e4e4e4;">{{ page.currenttime }}</div>
+                            <div style="color:#e4e4e4;">{{ page.currenttime }} {{ page.name }}</div>
                         </td>
                         <td style="text-align:right;width:150px;">
                         {% if page.login == 0 %}
@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <td style="padding:0px;width:200px;">
-                <a href="/index.html"><img src="/image/logo.png" style="width:180px;height:30px;" /></a>
+                <a href="index.php"><img src="image/logo.png" style="width:180px;height:30px;" /></a>
             </td>
             <td style="width:500px;">
                 <table class="menu">
@@ -75,7 +75,7 @@
             <td style="text-align:left;">
                 <div style="background:#858585;border:4px solid #858585;padding:0px;margin:0px;">
                     <input type="text" style="margin:0px;padding:3px;width:230px;" id="query" name="query" onclick="valueSelect(this)" value="" />
-                    <a href="#" onclick="goSearch();"><img src="/image/m_search_32.png" style="width:24px;height:24px;"/></a>
+                    <a href="#" onclick="goSearch();"><img src="image/m_search_32.png" style="width:24px;height:24px;"/></a>
                 </div>
             </td>
         </tr>
@@ -102,7 +102,7 @@
     <table style="margin-bottom:10px;width:100%;">
         <tr>
             <td style="width:50%;text-align:left;"><h4>가입하기</h4></td>
-            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="/image/close_01.gif"/></a></td>
+            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
         </tr>
     </table>
     <form id="signupForm" name="signupForm" method="post" action="/create_user.php">
@@ -160,7 +160,7 @@
     <table style="margin-bottom:10px;width:100%;">
         <tr>
             <td style="width:50%;text-align:left;"><h4>로그인</h4></td>
-            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="/image/close_01.gif"/></a></td>
+            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
         </tr>
     </table>
     <form id="loginForm" name="loginForm" method="post">
@@ -194,7 +194,7 @@
     <table style="margin-bottom:10px;width:100%;">
         <tr>
             <td style="width:50%;text-align:left;"><h4>로그아웃 하시겠습니까?</h4></td>
-            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="/image/close_01.gif"/></a></td>
+            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
         </tr>
     </table>
     <form id="logoutForm" name="logoutForm" method="post">
@@ -249,7 +249,7 @@
     
     function signup() {
         var dataString = $("#signupForm").serialize();
-        var url = '/v1/user.php';
+        var url = '/ecomm/v1/user.php';
         $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
                 if (data.status == '200') {
                 window.location.reload(true);
@@ -263,7 +263,7 @@
 
     function login() {
         var dataString = $("#loginForm").serialize();
-        var url = '/v1/user.php';
+        var url = '/ecomm//v1/user.php';
         $.ajax({type:'GET', url:url, async:false, data:dataString, success:function(data) {
                 if (data.status == '200') {
                 window.location.reload(true);
@@ -276,7 +276,7 @@
     }
     function logout() {
         var dataString = $("#logoutForm").serialize();
-        var url = '/v1/logout.php';
+        var url = '/ecomm/v1/logout.php';
         $.ajax({type:'GET', url:url, async:false, data:dataString, success:function(data) {
                 if (data.status == '200') {
                 window.location.reload(true);
@@ -349,7 +349,7 @@
 <div class="deal2-2">
     <div style="position:relative;width:965px; height:212px; overflow:hidden;">
         <div style="position:absolute; top:-45px; left:0px; z-index:1;">
-            <a href="/view.php?uid={{ page.today.uid }}"><img src="http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg" style="width:9500px;height:367px;"/></a>
+            <a href="/ecomm/view.php?uid={{ page.today.uid }}"><img src="http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg" style="width:9500px;height:367px;"/></a>
         </div>
     </div>
 
@@ -373,7 +373,7 @@
 <div class="deal2">
     <div style="position:relative;width:308px; height:162px; overflow:hidden;">
         <div style="position:absolute; top:0px; left:-7px; z-index:1;">
-            <a href="/view.php?uid={{ item.uid }}"><img src="{{ item.image }}" style="width:320px;height:162px;"/></a>
+            <a href="view.php?uid={{ item.uid }}"><img src="{{ item.image }}" style="width:320px;height:162px;"/></a>
         </div>
     </div>
     <div class="deal_exp2">
@@ -429,13 +429,9 @@
     </div>
 
     <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
-    <script type="text/JavaScript" src="/css/utils.js"></script>    
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/JavaScript" src="css/utils.js"></script>    
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <!-- 리포트2.0 로그분석코드 시작 -->
-    <script type="text/javascript">
-    var JsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
-    var uname = escape("쿠플");
-    document.write(unescape("%3Cscript id='log_script' src='" + JsHost + "apine002.weblog.cafe24.com/weblog.js?uid=apine002&uname="+uname+"' type='text/javascript'%3E%3C/script%3E"));
     </script>
     <!-- 리포트2.0  로그분석코드 완료 -->   
 </body>
