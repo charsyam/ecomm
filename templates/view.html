@@ -374,26 +374,13 @@
 </table>
 
 <table class="tb01" style="width:100%;">
-{% for item in page.images%}
+{% for item in page.images %}
 {{ item.starttag | safe }}
 <td>
 <div class="deal2">
     <div style="position:relative;width:308px; height:162px; overflow:hidden;">
         <div style="position:absolute; top:0px; left:-7px; z-index:1;">
             <a href="view.php?id={{ item.id }}"><img src="{{ item.image }}" style="width:320px;height:162px;"/></a>
-        </div>
-    </div>
-    <div class="deal_exp2">
-        <div style="line-height:180%;">
-            <span class="label">{{ item.label }}</span>
-            <span>{{ item.title }}</span><br/>
-        </div>
-        <div style="line-height:160%;">
-            <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.price }}</span>
-            <!--
-            <span style="font-weight:bold;font-size:8pt;color:#888888;">2012-11-22</span>
-            <span style="font-size:8pt;color:#888888;">까지</span>
-            -->
         </div>
     </div>
 </div></td>
