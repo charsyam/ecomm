@@ -105,7 +105,7 @@
             <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
         </tr>
     </table>
-    <form id="signupForm" name="signupForm" method="post" action="/create_user.php">
+    <form id="signupForm" name="signupForm" method="post" enctype='multipart/form-data' action='upload.php'>
     <table style="width:100%;margin-bottom:10px;">
         <tr>
         </tr>
@@ -117,28 +117,21 @@
             </td>
         </tr>
         <tr>
-            <th width="70">이메일</th>
+            <th width="70">가격</th>
             <td style="text-align:left;">
-                <input type="text" id="email" name="email" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
-                <span id="emailMessage" style="color:red"></span>
+                <input type="text" id="price" name="price" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="priceMessage" style="color:red"></span>
             </td>
         </tr>
         <tr>
-            <th width="70">패스워드</th>
+            <th width="70">라벨</th>
             <td style="text-align:left;">
-                <input type="password" id="password" name="password" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
-                <span id="passwordMessage" style="color:red"></span>
+                <input type="text" id="label" name="label" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="labelMessage" style="color:red"></span>
             </td>
         </tr>
         <tr>
-            <th width="70">전화번호</th>
-            <td style="text-align:left;">
-                <input type="text" id="phone" name="phone" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
-                <span id="phoneMessage" style="color:red"></span>
-            </td>
-        </tr>
-        <tr>
-            <th rowspan="2">주소</th>
+            <th rowspan="2">비고</th>
             <td style="text-align:left;">
             </td>
         </tr>
@@ -146,6 +139,23 @@
             <td colspan="2" style="text-align:left;">
                 <textarea id="address" name="address" style="background:#fff;border:1px solid #e4e4e4;width:100%" rows="3"></textarea>
                 <span id="addressMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">파일</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
+            </td>
+        </tr>
+        <div id='upload'>
+        </div>
+        <tr>
+            <td>
+                <button class="btn btn-success" id="addBtn" onclick="add_uploadForm();return false;">파일 추가</button>
             </td>
         </tr>
         <tr>
@@ -287,9 +297,13 @@
                 }
                 }});
     }
-    function getKeyword() {
-    }
-    
+
+    function add_uploadForm() {
+        var txt = "<tr><td colspan='2' style='text-align:left;'><input type='file' name='file[]' id='file' multiple='multiple' style='background:#fff;border:1px solid #e4e4e4;width:100%' /></td></tr>";
+        
+        $('#upload').html(txt);
+    } 
+
     function subscribe() {
     }
     
@@ -333,54 +347,60 @@
  
 <div style="position:relative;">
     <div style="position:relative;width:250px;">
-        <h4>{{ page.item.title }}</h4>
+        <h4>오늘의 추천상품</h4>
     </div>
     <div class="tab01 btn-group">
-        <button onclick="goSearchType('SOCIAL_DEAL', 'HIT');" class="btn btn-small btn-info"><i class="icon-heart icon-white"></i> 바로구매</button>
-        <button onclick="goSearchType('SOCIAL_DEAL', 'BUY_COUNT');" class="btn btn-small "><i class="icon-shopping-cart icon-white"></i>장바구니</button>
+        <button onclick="goSearchType('SOCIAL_DEAL', 'HIT');" class="btn btn-small btn-info"><i class="icon-heart icon-white"></i> 인기순</button>
+        <button onclick="goSearchType('SOCIAL_DEAL', 'BUY_COUNT');" class="btn btn-small "><i class="icon-shopping-cart icon-white"></i> 구매순</button> 
+        <button onclick="goSearchType('SOCIAL_DEAL', 'PRICE_ROW');" class="btn btn-small "><i class="icon-ok icon-white"></i> 가격순</button>
     </div>
 </div>
 
+{% if page.hastoday %} 
 <table class="tb01" style="width:100%;">
     <tr>
         <td>
 <div class="deal2-2">
-    <div style="position:relative;width:965px; overflow:hidden;">
+    <div style="position:relative;width:965px; height:212px; overflow:hidden;">
         <div style="position:absolute; top:-45px; left:0px; z-index:1;">
+            <a href="/ecomm/view.php?id={{ page.today.id }}"><img src="http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg" style="width:9500px;height:367px;"/></a>
         </div>
     </div>
 
-    <div class="deal2_2_exp">
+    <div class="deal2-2_exp fil8">
         <div style="line-height:180%;">
-            <span class="label">{{ page.item.price }}</span>
-        </div>
-
-        <div style="line-height:180%;">
-            <span class="label">{{ page.seller.name }}</span>
-            <span style="font-size:8pt;color:#888888;">{{ page.seller.comment }}</span>&nbsp;
-        </div>
-
-        <div style="line-height:180%;">
-            <span class="label">연락처</span>
-            <span style="font-weight:bold;"><span style="color:#FF0000;font-weight:bold; font-size:12pt;">{{ page.seller.phone }}</span></span>
-        </div>
-        <div style="line-height:180%;">
-            <span class="label">상품소개</span>
-            <span style="font-size:8pt;color:#888888;">{{ page.item.comment }}</span>&nbsp;
+            <span class="label">{{ page.today.label }}</span>
+            <span style="color:#fff;font-weight:bold;font-size:12pt;">{{ page.today.title }}</span>
+            <span style="color:#fff;font-weight:bold;font-size:12pt;">{{ page.today.price }}</span>  
         </div>
     </div>
 </div></td>
     </tr>
 </table>
+{% endif %}
+
 
 <table class="tb01" style="width:100%;">
-{% for item in page.images %}
+{% for item in page.items %}
 {{ item.starttag | safe }}
 <td>
 <div class="deal2">
     <div style="position:relative;width:308px; height:162px; overflow:hidden;">
         <div style="position:absolute; top:0px; left:-7px; z-index:1;">
-            <img src="{{ item.image }}" style="width:320px;height:162px;"/>
+            <a href="view.php?id={{ item.id }}"><img src="{{ item.image }}" style="width:320px;height:162px;"/></a>
+        </div>
+    </div>
+    <div class="deal_exp2">
+        <div style="line-height:180%;">
+            <span class="label">{{ item.label }}</span>
+            <span>{{ item.title }}</span><br/>
+        </div>
+        <div style="line-height:160%;">
+            <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.price }}</span>  
+            <!--
+            <span style="font-weight:bold;font-size:8pt;color:#888888;">2012-11-22</span>
+            <span style="font-size:8pt;color:#888888;">까지</span> 
+            -->
         </div>
     </div>
 </div></td>
@@ -389,9 +409,17 @@
 {% endfor %}
 </table>
 
-
+ 
 <div style="position:relative;padding-bottom:3px;width:100%;height:30px;margin-bottom:10px;">
     <div class="page01">
+        <ul>
+{% if page.hasprevpage == 1 %}
+            <li onclick="goPage( {{ page.prevpage }} );">이전</li>
+{% endif %}
+{% if page.hasnextpage == 1 %}
+            <li onclick="goPage( {{ page.nextpage }} );">다음</li>
+{% endif %}
+        </ul>
     </div>
 </div>
 

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ page.title }}</title>
+    <link rel="shortcut icon" href="image/favicon-2.ico" type="image/x-icon">
+    <link rel="icon" href="image/favicon-1.ico" type="image/x-icon">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="css/w/style.css" type="text/css" />
+</head>
+<body>
+    <div class="wrap">
+        <div class="header bg fil8"></div>
+        <div class="header" style="background:#504c59;"> 
+
+ 
+<div style="position:relative;width:980px;left:50%;margin-left:-490px;padding:0px;">
+    <form id="searchForm" name="searchForm" method="get" action="/search.html">
+    <input type="hidden" id="page" name="page" value="1"/>
+    <input type="hidden" id="mainMenuId" name="mainMenuId" value=""/>
+    <input type="hidden" id="subMenuId" name="subMenuId" value=""/>
+    <input type="hidden" id="order" name="order" value="HIT"/>
+    <table style="padding:0px;border-spacing:0px;border-collapse:collapse;width:100%;text-align:left;">
+        <tr>
+            <td colspan="3">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="text-align:right;">
+                            <div style="color:#e4e4e4;">{{ page.currenttime }}</div>
+                        </td>
+                        <td style="text-align:right;width:150px;">
+                        {% if page.admin == 0 %}
+                            <a class="btn btn-mini btn-info" onclick="registerLayer()">Register</a>
+                        {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding:0px;width:200px;">
+                <a href="index.php"><img src="image/logo.png" style="width:180px;height:30px;" /></a>
+            </td>
+            <td style="width:500px;">
+                <table class="menu">
+                    <tr>
+                    
+                        <td class="" onclick="goMainMenu('seller.php')">
+                            판매자관리
+                        </td>
+                    
+                        <td class="" onclick="goMainMenu('goods.php')">
+                            상품관리
+                        </td>
+                    
+                        <td class="" onclick="goMainMenu('history.php')">
+                            판매기록
+                        </td>
+                    </tr>
+                </table>            
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                            
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+
+<!-- 최근본 상품 -->
+<div id="recentViewBox" style="position:absolute;top:130px;left:50%;margin-left:500px;width:90px;padding:7px 0 4px 0;text-align:left;">
+
+
+
+ 
+
+
+</div>
+
+<div id="dimmedDiv1" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
+    <table style="margin-bottom:10px;width:100%;">
+        <tr>
+            <td style="width:50%;text-align:left;"><h4>판매자 등록</h4></td>
+            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
+        </tr>
+    </table>
+    <form id="registerForm" name="registerForm" method="post">
+    <table style="width:100%;margin-bottom:10px;">
+        <tr>
+        </tr>
+        <tr>
+            <th width="70">이름</th>
+            <td style="text-align:left;">
+                <input type="text" id="name" name="name" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="nameMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">전화번호</th>
+            <td style="text-align:left;">
+                <input type="text" id="phone" name="phone" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="phoneMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">비고</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <textarea id="comment" name="comment" style="background:#fff;border:1px solid #e4e4e4;width:100%" rows="3"></textarea>
+                <span id="commentMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right;">
+                <button class="btn btn-success" id="subscribeBtn" onclick="register();return false;">판매자 등록</button>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+<script type="text/javascript">
+//  if ($('#searchForm').val() == '') {
+//      $('#query').focus();
+//  }
+    function registeKeyword() {
+        dimmedOff();
+    }
+    
+    function registerLayer() {
+        dimmed.on();
+        $('#dimmedDiv1').fadeIn(300);
+    }
+    
+    function dimmedOff() {
+        dimmed.off();
+        $('#dimmedDiv1').fadeOut(300);
+        return false;
+    };
+    
+    function register() {
+        var dataString = $("#registerForm").serialize();
+        var url = '/ecomm/v1/seller.php';
+        $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
+                if (data.status == '200') {
+                window.location.reload(true);
+                } else if (data.status == '501') {
+                $('#commentMessage').html(data.message);
+                } else {
+                $('#commentMessage').html(data.message);
+                }
+                }});
+    }
+
+    function recentDealShow(obj, title) {
+        var top = $(obj).position().top + "px";
+        var left = ($(obj).position().left - 233) + "px";
+        $('#recentDealInfo').css({"top": top, "left":left}).show().html(title);
+    }
+    
+    function recentDealHide(obj) {
+        $('#recentDealInfo').hide();
+    }
+</script>
+        </div>
+        <div class="body">
+            
+
+
+
+ 
+
+            
+
+
+
+ 
+<!--
+<div class="right">
+</div>
+-->
+            <div style="position:relative;margin-left:0px;">
+                
+
+
+ 
+
+
+
+
+
+ 
+<div style="position:relative;">
+    <div style="position:relative;width:250px;">
+        <h4>{{ page.pagename }}</h4>
+    </div>
+</div>
+
+<table class="tb01" style="width:100%;">
+{% for item in page.items %}
+<tr>
+<td>
+<div class="deal2">
+    <div class="deal_exp2">
+        <div style="line-height:180%;">
+            <span class="label">{{ item.id }}</span>
+            <span>{{ item.name }}</span><br/>
+            <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.phone }}</span>  
+            <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.comment }}</span>  
+        </div>
+    </div>
+</div></td>
+    <td width="7px"></td>
+</tr>
+{% endfor %}
+</table>
+
+ 
+<div style="position:relative;padding-bottom:3px;width:100%;height:30px;margin-bottom:10px;">
+    <div class="page01">
+        <ul>
+{% if page.hasprevpage == 1 %}
+            <li onclick="goPage( {{ page.prevpage }} );">이전</li>
+{% endif %}
+{% if page.hasnextpage == 1 %}
+            <li onclick="goPage( {{ page.nextpage }} );">다음</li>
+{% endif %}
+        </ul>
+    </div>
+</div>
+
+
+
+            </div>
+        </div>
+        <div class="footer">
+            관리자: webmaster@ecomm.com<br/>
+            ※ 본 사이트는 방송통신대학원의 전자상거래시스템의 텀프로젝트를 위한 사이트입니다. 실제로 구매가 되지 않습니다.
+        </div>
+    </div>
+
+    <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+    <script type="text/JavaScript" src="css/utils.js"></script>    
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 리포트2.0 로그분석코드 시작 -->
+    </script>
+    <!-- 리포트2.0  로그분석코드 완료 -->   
+</body>
+</html>
+

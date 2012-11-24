@@ -30,8 +30,8 @@ function goPage(page) {
 	location.href = 'index.php?page='+page;
 }
 
-function goMainMenu(mainMenuId) {
-	location.href = '/main.html?mainMenuId='+mainMenuId;
+function goMainMenu(url) {
+	location.href = url;
 }
 function goSubMenu(mainMenuId, subMenuId) {
 	location.href = '/main.html?mainMenuId='+mainMenuId+'&subMenuId='+subMenuId;
