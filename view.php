@@ -13,8 +13,7 @@ $id = 0;
 if ( isset($_GET['id']) )
     $id = $_GET['id'];
 
-$items = array();
-$query = "select * from tbl_goods where id=$id ";
+$query = "select * from tbl_goods where id=$id";
 
 $result = mysql_query($query);
 $count = mysql_num_rows($result);
@@ -24,6 +23,34 @@ $query = "select * from tbl_seller where id=".$item['seller'];
 $result = mysql_query($query);
 $count = mysql_num_rows($result);
 $seller = mysql_fetch_array($result);
+
+$query = "select * from tbl_images where good_id=$id";
+$result = mysql_query($query);
+$count = mysql_num_rows($result);
+
+$images = array();
+
+while( $row = mysql_fetch_array($result) ){
+    $starttag = '';
+    $endtag = '';
+
+    if( $num % 3 == 0){
+        $starttag = "<tr>";
+    }
+    if( $num % 3 == 2 || $num == $count-1){
+        $endtag = "</tr>";
+    }
+
+    $newitem = array(
+            'starttag' => $starttag,
+            'endtag' => $endtag,
+            'id' => $row['id'],
+            'image' => $row['image']
+    );
+    array_push( $images, $newitem );
+    $num++;
+}
+
 
 $page = array(
     'title' => "A Farmer's Marke",
@@ -42,28 +69,7 @@ $page = array(
         'phone' => $seller['phone'],
         'comment' => $seller['comment']
     ),
-    'images' => array(
-        array(
-            'starttag' => '<tr>',
-            'image' => 'http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg',
-            'endtag' => ''
-        ),
-        array(
-            'starttag' => '',
-            'image' => 'http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg',
-            'endtag' => ''
-        ),
-        array(
-            'starttag' => '',
-            'image' => 'http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg',
-            'endtag' => '</tr>'
-        ),
-        array(
-            'starttag' => '<tr>',
-            'image' => 'http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg',
-            'endtag' => '</tr>'
-        )
-    )
+    'images' => $images
 );
 
 echo $h2o->render(compact('page'));

@@ -29,13 +29,7 @@
                             <div style="color:#e4e4e4;">{{ page.currenttime }} {{ page.name }}</div>
                         </td>
                         <td style="text-align:right;width:150px;">
-                        {% if page.login == 0 %}
-                            <a class="btn btn-mini btn-info" onclick="loginLayer()">Login</a>
-                            <a class="btn btn-mini " onclick="signupLayer()">Sign Up</a>
-                        {% else  %}
-                            <a class="btn btn-mini btn-info" onclick="logoutLayer()">Logout</a>
-                        {% endif %}
-                            </div>
+                            <a class="btn btn-mini btn-info" onclick="uploadLayer()">Register</a>
                         </td>
                     </tr>
                 </table>
@@ -98,22 +92,22 @@
 
 </div>
 
-<div id="dimmedDiv2" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
+<div id="dimmedDiv1" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
     <table style="margin-bottom:10px;width:100%;">
         <tr>
-            <td style="width:50%;text-align:left;"><h4>가입하기</h4></td>
+            <td style="width:50%;text-align:left;"><h4>상품등록</h4></td>
             <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
         </tr>
     </table>
-    <form id="signupForm" name="signupForm" method="post" enctype='multipart/form-data' action='upload.php'>
+    <form id="registerForm" name="registerForm" method="post" enctype='multipart/form-data' action='v1/upload.php'>
     <table style="width:100%;margin-bottom:10px;">
         <tr>
         </tr>
         <tr>
-            <th width="70">이름</th>
+            <th width="70">상품명</th>
             <td style="text-align:left;">
-                <input type="text" id="name" name="name" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
-                <span id="nameMessage" style="color:red"></span>
+                <input type="text" id="title" name="title" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="titleMessage" style="color:red"></span>
             </td>
         </tr>
         <tr>
@@ -131,14 +125,21 @@
             </td>
         </tr>
         <tr>
+            <th width="70">판매자</th>
+            <td style="text-align:left;">
+                <input type="text" id="seller" name="seller" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="sellerMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
             <th rowspan="2">비고</th>
             <td style="text-align:left;">
             </td>
         </tr>
         <tr>
             <td colspan="2" style="text-align:left;">
-                <textarea id="address" name="address" style="background:#fff;border:1px solid #e4e4e4;width:100%" rows="3"></textarea>
-                <span id="addressMessage" style="color:red"></span>
+                <textarea id="comment" name="comment" style="background:#fff;border:1px solid #e4e4e4;width:100%" rows="3"></textarea>
+                <span id="commentMessage" style="color:red"></span>
             </td>
         </tr>
         <tr>
@@ -151,70 +152,59 @@
                 <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
             </td>
         </tr>
-        <div id='upload'>
-        </div>
         <tr>
-            <td>
-                <button class="btn btn-success" id="addBtn" onclick="add_uploadForm();return false;">파일 추가</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align:right;">
-                <button class="btn btn-success" id="subscribeBtn" onclick="signup();return false;">가입</button>
-            </td>
-        </tr>
-    </table>
-    </form>
-</div>
-<div id="dimmedDiv1" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
-    <table style="margin-bottom:10px;width:100%;">
-        <tr>
-            <td style="width:50%;text-align:left;"><h4>로그인</h4></td>
-            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
-        </tr>
-    </table>
-    <form id="loginForm" name="loginForm" method="post">
-    <table style="width:100%;margin-bottom:10px;">
-        <tr>
-        </tr>
-        <tr>
-        <tr>
-            <th width="70">이메일</th>
+            <th rowspan="2">파일</th>
             <td style="text-align:left;">
-                <input type="text" id="email" name="email" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
-                <span id="emailMessage" style="color:red"></span>
             </td>
         </tr>
         <tr>
-            <th width="70">패스워드</th>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">파일</th>
             <td style="text-align:left;">
-                <input type="password" id="password" name="password" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
-                <span id="lpasswordMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">파일</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">파일</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">파일</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
             </td>
         </tr>
         <tr>
             <td colspan="2" style="text-align:right;">
-                <button class="btn btn-success" id="subscribeBtn" onclick="login();return false;">로그인</button>
-            </td>
-        </tr>
-    </table>
-    </form>
-</div>
-<div id="dimmedDiv3" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
-    <table style="margin-bottom:10px;width:100%;">
-        <tr>
-            <td style="width:50%;text-align:left;"><h4>로그아웃 하시겠습니까?</h4></td>
-            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
-        </tr>
-    </table>
-    <form id="logoutForm" name="logoutForm" method="post">
-    <table style="width:100%;margin-bottom:10px;">
-        <tr>
-        </tr>
-        <tr>
-        <tr>
-            <td colspan="2" style="text-align:right;">
-                <button class="btn btn-success" id="subscribeBtn" onclick="logout();return false;">로그아웃</button>
+                <button class="btn btn-success" id="subscribeBtn" onclick="document.registerForm.submit();return false;">등록</button>
             </td>
         </tr>
     </table>
@@ -228,81 +218,19 @@
         dimmedOff();
     }
     
-    function signupLayer() {
+    function uploadLayer() {
         dimmed.on();
-        $('#dimmedDiv1').fadeOut(300);
-        $('#dimmedDiv3').fadeOut(300);
-        $('#dimmedDiv2').fadeIn(300);
-    }
-    
-    function loginLayer() {
-        dimmed.on();
-        $('#dimmedDiv3').fadeOut(300);
-        $('#dimmedDiv2').fadeOut(300);
         $('#dimmedDiv1').fadeIn(300);
     }
-
-    function logoutLayer() {
-        dimmed.on();
-        $('#dimmedDiv1').fadeOut(300);
-        $('#dimmedDiv2').fadeOut(300);
-        $('#dimmedDiv3').fadeIn(300);
-    }
-
+    
     function dimmedOff() {
         dimmed.off();
         $('#dimmedDiv1').fadeOut(300);
-        $('#dimmedDiv2').fadeOut(300);
-        $('#dimmedDiv3').fadeOut(300);
         return false;
     };
     
-    function signup() {
-        var dataString = $("#signupForm").serialize();
-        var url = '/ecomm/v1/user.php';
-        $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
-                if (data.status == '200') {
-                window.location.reload(true);
-                } else if (data.status == '501') {
-                $('#addressMessage').html(data.message);
-                } else {
-                $('#addressMessage').html(data.message);
-                }
-                }});
+    function register() {
     }
-
-    function login() {
-        var dataString = $("#loginForm").serialize();
-        var url = '/ecomm//v1/user.php';
-        $.ajax({type:'GET', url:url, async:false, data:dataString, success:function(data) {
-                if (data.status == '200') {
-                window.location.reload(true);
-                } else if (data.status == '501') {
-                $('#lpasswordMessage').html(data.message);
-                } else {
-                $('#lpasswordMessage').html(data.message);
-                }
-                }});
-    }
-    function logout() {
-        var dataString = $("#logoutForm").serialize();
-        var url = '/ecomm/v1/logout.php';
-        $.ajax({type:'GET', url:url, async:false, data:dataString, success:function(data) {
-                if (data.status == '200') {
-                window.location.reload(true);
-                } else if (data.status == '501') {
-                $('#lpasswordMessage').html(data.message);
-                } else {
-                $('#lpasswordMessage').html(data.message);
-                }
-                }});
-    }
-
-    function add_uploadForm() {
-        var txt = "<tr><td colspan='2' style='text-align:left;'><input type='file' name='file[]' id='file' multiple='multiple' style='background:#fff;border:1px solid #e4e4e4;width:100%' /></td></tr>";
-        
-        $('#upload').html(txt);
-    } 
 
     function subscribe() {
     }
