@@ -55,11 +55,22 @@ $hasnextpage = 1;
 if( $pagenum == $lastpagenum )
     $hasnextpage = 0;
     
+
+$login = 0;
+if ( isset( $_SESSION["login"] ) ){
+    $login = $_SESSION["login"];
+}
+
+$name = "";
+if ( isset( $_SESSION["name"] ) ){
+    $name = $_SESSION["name"];
+}
+
 $page = array(
     'title' => "A Farmer's Marke",
     'currenttime' => getCurrentTime(),
-    'login' => $_SESSION["login"],
-    'name' => $_SESSION["name"],
+    'login' => $login,
+    'name' => "$name",
     'hastoday' => 1,
     'today' => array(
         'id' => 1,

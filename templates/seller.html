@@ -145,7 +145,7 @@
     
     function register() {
         var dataString = $("#registerForm").serialize();
-        var url = '/ecomm/v1/seller.php';
+        var url = 'v1/seller.php';
         $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
                 if (data.status == '200') {
                 window.location.reload(true);
@@ -153,6 +153,20 @@
                 $('#commentMessage').html(data.message);
                 } else {
                 $('#commentMessage').html(data.message);
+                }
+                }});
+    }
+
+    function goDelete() {
+        var dataString = $("#sellerForm").serialize();
+        var url = 'v1/delete_seller.php';
+        $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
+                if (data.status == "200") {
+                window.location.reload(true);
+                } else if (data.status == "501") {
+                    window.alert(data);
+                } else {
+                    window.alert(data);
                 }
                 }});
     }
@@ -197,17 +211,22 @@
  
 <div style="position:relative;">
     <div style="position:relative;width:250px;">
-        <h4>{{ page.pagename }}</h4>
+        <h4>판매자 목록</h4>
+    </div>
+    <div class="tab01 btn-group">
+        <button onclick="goDelete();" class="btn btn-small btn-info">판매자 삭제</button>
     </div>
 </div>
 
 <table class="tb01" style="width:100%;">
+<form id="sellerForm" name="sellerForm" method="post" action="v1/delete_cart.php">
 {% for item in page.items %}
 <tr>
 <td>
 <div class="deal2">
     <div class="deal_exp2">
         <div style="line-height:180%;">
+            <input type="checkbox" name="checkitem[]" value="{{ item.id }}">
             <span class="label">{{ item.id }}</span>
             <span>{{ item.name }}</span><br/>
             <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.phone }}</span>  
@@ -218,6 +237,7 @@
     <td width="7px"></td>
 </tr>
 {% endfor %}
+</form>
 </table>
 
  

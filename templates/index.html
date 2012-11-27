@@ -200,6 +200,7 @@
     <form id="logoutForm" name="logoutForm" method="post">
     <table style="width:100%;margin-bottom:10px;">
         <tr>
+                <span id="logoutMessage" style="color:red"></span>
         </tr>
         <tr>
         <tr>
@@ -249,7 +250,7 @@
     
     function signup() {
         var dataString = $("#signupForm").serialize();
-        var url = '/ecomm/v1/user.php';
+        var url = 'v1/user.php';
         $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
                 if (data.status == '200') {
                 window.location.reload(true);
@@ -263,7 +264,7 @@
 
     function login() {
         var dataString = $("#loginForm").serialize();
-        var url = '/ecomm//v1/user.php';
+        var url = 'v1/user.php';
         $.ajax({type:'GET', url:url, async:false, data:dataString, success:function(data) {
                 if (data.status == '200') {
                 window.location.reload(true);
@@ -276,14 +277,14 @@
     }
     function logout() {
         var dataString = $("#logoutForm").serialize();
-        var url = '/ecomm/v1/logout.php';
+        var url = 'v1/logout.php';
         $.ajax({type:'GET', url:url, async:false, data:dataString, success:function(data) {
                 if (data.status == '200') {
                 window.location.reload(true);
                 } else if (data.status == '501') {
-                $('#lpasswordMessage').html(data.message);
+                $('#logoutMessage').html(data.message);
                 } else {
-                $('#lpasswordMessage').html(data.message);
+                $('#logoutMessage').html(data.message);
                 }
                 }});
     }
@@ -379,7 +380,7 @@
     <div class="deal_exp2">
         <div style="line-height:180%;">
             <span class="label">{{ item.label }}</span>
-            <span>{{ item.title }}</span><br/>
+             <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.title }}</span><br/>
         </div>
         <div style="line-height:160%;">
             <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.price }}</span>  

@@ -26,6 +26,13 @@ function goSearchType(type, order) {
 	goSearch();
 }
 
+function goCart(id) {
+    if( id == 0 )
+        location.href = "cart.php";
+    else
+	    location.href = "cart.php?id="+id;
+}
+
 function goPage(page) {
 	location.href = 'index.php?page='+page;
 }
