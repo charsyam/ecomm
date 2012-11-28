@@ -56,6 +56,7 @@ $page = array(
     'title' => "A Farmer's Marke",
     'currenttime' => getCurrentTime(),
     'login' => $_SESSION["login"],
+    'admin' => $_SESSION["admin"],
     'name' => $_SESSION["name"],
     'item' => array(
         'id' => $item['id'],

@@ -26,16 +26,10 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="text-align:right;">
-                            <div style="color:#e4e4e4;">{{ page.currenttime }} {{ page.name }}</div>
+                            <div style="color:#e4e4e4;">{{ page.currenttime }}</div>
                         </td>
                         <td style="text-align:right;width:150px;">
-                        {% if page.login == 0 %}
-                            <a class="btn btn-mini btn-info" onclick="loginLayer()">Login</a>
-                            <a class="btn btn-mini " onclick="signupLayer()">Sign Up</a>
-                        {% else  %}
-                            <a class="btn btn-mini btn-info" onclick="logoutLayer()">Logout</a>
-                        {% endif %}
-                            </div>
+                            <a class="btn btn-mini btn-info" onclick="loginLayer()">Admin</a>
                         </td>
                     </tr>
                 </table>
@@ -98,68 +92,10 @@
 
 </div>
 
-<div id="dimmedDiv2" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
-    <table style="margin-bottom:10px;width:100%;">
-        <tr>
-            <td style="width:50%;text-align:left;"><h4>가입하기</h4></td>
-            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
-        </tr>
-    </table>
-    <form id="signupForm" name="signupForm" method="post" action="/create_user.php">
-    <table style="width:100%;margin-bottom:10px;">
-        <tr>
-        </tr>
-        <tr>
-            <th width="70">이름</th>
-            <td style="text-align:left;">
-                <input type="text" id="name" name="name" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
-                <span id="nameMessage" style="color:red"></span>
-            </td>
-        </tr>
-        <tr>
-            <th width="70">이메일</th>
-            <td style="text-align:left;">
-                <input type="text" id="email" name="email" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
-                <span id="emailMessage" style="color:red"></span>
-            </td>
-        </tr>
-        <tr>
-            <th width="70">패스워드</th>
-            <td style="text-align:left;">
-                <input type="password" id="password" name="password" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
-                <span id="passwordMessage" style="color:red"></span>
-            </td>
-        </tr>
-        <tr>
-            <th width="70">전화번호</th>
-            <td style="text-align:left;">
-                <input type="text" id="phone" name="phone" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
-                <span id="phoneMessage" style="color:red"></span>
-            </td>
-        </tr>
-        <tr>
-            <th rowspan="2">주소</th>
-            <td style="text-align:left;">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align:left;">
-                <textarea id="address" name="address" style="background:#fff;border:1px solid #e4e4e4;width:100%" rows="3"></textarea>
-                <span id="addressMessage" style="color:red"></span>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align:right;">
-                <button class="btn btn-success" id="subscribeBtn" onclick="signup();return false;">가입</button>
-            </td>
-        </tr>
-    </table>
-    </form>
-</div>
 <div id="dimmedDiv1" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
     <table style="margin-bottom:10px;width:100%;">
         <tr>
-            <td style="width:50%;text-align:left;"><h4>로그인</h4></td>
+            <td style="width:50%;text-align:left;"><h4>관리자</h4></td>
             <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
         </tr>
     </table>
@@ -190,26 +126,6 @@
     </table>
     </form>
 </div>
-<div id="dimmedDiv3" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
-    <table style="margin-bottom:10px;width:100%;">
-        <tr>
-            <td style="width:50%;text-align:left;"><h4>로그아웃 하시겠습니까?</h4></td>
-            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
-        </tr>
-    </table>
-    <form id="logoutForm" name="logoutForm" method="post">
-    <table style="width:100%;margin-bottom:10px;">
-        <tr>
-        </tr>
-        <tr>
-        <tr>
-            <td colspan="2" style="text-align:right;">
-                <button class="btn btn-success" id="subscribeBtn" onclick="logout();return false;">로그아웃</button>
-            </td>
-        </tr>
-    </table>
-    </form>
-</div>
 <script type="text/javascript">
 //  if ($('#searchForm').val() == '') {
 //      $('#query').focus();
@@ -218,76 +134,20 @@
         dimmedOff();
     }
     
-    function signupLayer() {
-        dimmed.on();
-        $('#dimmedDiv1').fadeOut(300);
-        $('#dimmedDiv3').fadeOut(300);
-        $('#dimmedDiv2').fadeIn(300);
-    }
-    
     function loginLayer() {
         dimmed.on();
-        $('#dimmedDiv3').fadeOut(300);
-        $('#dimmedDiv2').fadeOut(300);
         $('#dimmedDiv1').fadeIn(300);
-    }
-
-    function logoutLayer() {
-        dimmed.on();
-        $('#dimmedDiv1').fadeOut(300);
-        $('#dimmedDiv2').fadeOut(300);
-        $('#dimmedDiv3').fadeIn(300);
     }
 
     function dimmedOff() {
         dimmed.off();
         $('#dimmedDiv1').fadeOut(300);
-        $('#dimmedDiv2').fadeOut(300);
-        $('#dimmedDiv3').fadeOut(300);
         return false;
     };
     
-    function signup() {
-        var dataString = $("#signupForm").serialize();
-        var url = '/ecomm/v1/user.php';
-        $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
-                if (data.status == '200') {
-                window.location.reload(true);
-                } else if (data.status == '501') {
-                $('#addressMessage').html(data.message);
-                } else {
-                $('#addressMessage').html(data.message);
-                }
-                }});
-    }
-    function goDelete(id) {
-        var dataString = "";
-        var url = '/ecomm/v1/delete_good.php?id='+id;
-        $.ajax({type:'GET', url:url, async:false, data:dataString, success:function(data) {
-                if (data.status == '200') {
-                window.location = "index.php";
-                } else {
-                    window.alert(data.message);
-                }
-                }});
-    }
-
     function login() {
         var dataString = $("#loginForm").serialize();
-        var url = '/ecomm//v1/user.php';
-        $.ajax({type:'GET', url:url, async:false, data:dataString, success:function(data) {
-                if (data.status == '200') {
-                window.location.reload(true);
-                } else if (data.status == '501') {
-                $('#lpasswordMessage').html(data.message);
-                } else {
-                $('#lpasswordMessage').html(data.message);
-                }
-                }});
-    }
-    function logout() {
-        var dataString = $("#logoutForm").serialize();
-        var url = '/ecomm/v1/logout.php';
+        var url = 'v1/admin.php';
         $.ajax({type:'GET', url:url, async:false, data:dataString, success:function(data) {
                 if (data.status == '200') {
                 window.location.reload(true);
@@ -344,59 +204,60 @@
  
 <div style="position:relative;">
     <div style="position:relative;width:250px;">
-        <h4>{{ page.item.title }}</h4>
+        <h4>오늘의 추천상품</h4>
     </div>
     <div class="tab01 btn-group">
-        {% if page.admin %}
-        <button onclick="setTodayItem({{ page.item.id }});" class="btn btn-small btn-info "><i class="icon-shopping-cart icon-white"></i>오늘의 상품</button>
-        <button onclick="goDelete({{page.item.id}});" class="btn btn-small "><i class="icon-hart icon-white"></i>삭제하기</button>
-        {% else %}
-        <button onclick="goCart(0);" class="btn btn-small btn-info "><i class="icon-shopping-cart icon-white"></i>장바구니</button>
-        <button onclick="goCart({{page.item.id}});" class="btn btn-small "><i class="icon-hart icon-white"></i>구매하기</button>
-        {% endif %}
+        <button onclick="goSearchType('SOCIAL_DEAL', 'HIT');" class="btn btn-small btn-info"><i class="icon-heart icon-white"></i> 인기순</button>
+        <button onclick="goSearchType('SOCIAL_DEAL', 'BUY_COUNT');" class="btn btn-small "><i class="icon-shopping-cart icon-white"></i> 구매순</button> 
+        <button onclick="goSearchType('SOCIAL_DEAL', 'PRICE_ROW');" class="btn btn-small "><i class="icon-ok icon-white"></i> 가격순</button>
     </div>
 </div>
 
+{% if page.hastoday %} 
 <table class="tb01" style="width:100%;">
     <tr>
         <td>
 <div class="deal2-2">
-    <div style="position:relative;width:965px; overflow:hidden;">
+    <div style="position:relative;width:965px; height:212px; overflow:hidden;">
         <div style="position:absolute; top:-45px; left:0px; z-index:1;">
+            <a href="/ecomm/view.php?id={{ page.today.id }}"><img src="http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg" style="width:9500px;height:367px;"/></a>
         </div>
     </div>
 
-    <div class="deal2_2_exp">
+    <div class="deal2-2_exp fil8">
         <div style="line-height:180%;">
-            <span class="label">{{ page.item.price }}</span>
-        </div>
-
-        <div style="line-height:180%;">
-            <span class="label">{{ page.seller.name }}</span>
-            <span style="font-size:8pt;color:#888888;">{{ page.seller.comment }}</span>&nbsp;
-        </div>
-
-        <div style="line-height:180%;">
-            <span class="label">연락처</span>
-            <span style="font-weight:bold;"><span style="color:#FF0000;font-weight:bold; font-size:12pt;">{{ page.seller.phone }}</span></span>
-        </div>
-        <div style="line-height:180%;">
-            <span class="label">상품소개</span>
-            <span style="font-size:8pt;color:#888888;">{{ page.item.comment }}</span>&nbsp;
+            <span class="label">{{ page.today.label }}</span>
+            <span style="color:#fff;font-weight:bold;font-size:12pt;">{{ page.today.title }}</span>
+            <span style="color:#fff;font-weight:bold;font-size:12pt;">{{ page.today.price }}</span>  
         </div>
     </div>
 </div></td>
     </tr>
 </table>
+{% endif %}
+
 
 <table class="tb01" style="width:100%;">
-{% for item in page.images %}
+{% for item in page.items %}
 {{ item.starttag | safe }}
 <td>
 <div class="deal2">
     <div style="position:relative;width:308px; height:162px; overflow:hidden;">
         <div style="position:absolute; top:0px; left:-7px; z-index:1;">
-            <img src="{{ item.image }}" style="width:320px;height:162px;"/>
+            <a href="view.php?id={{ item.id }}"><img src="{{ item.image }}" style="width:320px;height:162px;"/></a>
+        </div>
+    </div>
+    <div class="deal_exp2">
+        <div style="line-height:180%;">
+            <span class="label">{{ item.label }}</span>
+             <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.title }}</span><br/>
+        </div>
+        <div style="line-height:160%;">
+            <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.price }}</span>  
+            <!--
+            <span style="font-weight:bold;font-size:8pt;color:#888888;">2012-11-22</span>
+            <span style="font-size:8pt;color:#888888;">까지</span> 
+            -->
         </div>
     </div>
 </div></td>
@@ -405,9 +266,17 @@
 {% endfor %}
 </table>
 
-
+ 
 <div style="position:relative;padding-bottom:3px;width:100%;height:30px;margin-bottom:10px;">
     <div class="page01">
+        <ul>
+{% if page.hasprevpage == 1 %}
+            <li onclick="goPage( {{ page.prevpage }} );">이전</li>
+{% endif %}
+{% if page.hasnextpage == 1 %}
+            <li onclick="goPage( {{ page.nextpage }} );">다음</li>
+{% endif %}
+        </ul>
     </div>
 </div>
 
