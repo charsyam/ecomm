@@ -17,7 +17,30 @@ $startnum = $pagenum * 9;
 $endnum = $startnum + 9;
 
 $items = array();
-$query = "select * from tbl_goods order by id desc limit $startnum, $endnum";
+$type = 0;
+
+$json = file_get_contents('http://14.63.227.140/ecomm/v1/today.php');
+$todayjson = json_decode($json);
+print $todayjson;
+$hastoday = 0;
+if( $todayjson->{'status'} == "200" )
+    $hastoday = 1;
+
+print $hastoday;
+
+$today = $todayjson->{'today'};
+print $today;
+
+$sortby = 0;
+if ( isset($_GET['sortby']) )
+    $sortby = $_GET['sortby'];
+
+if( $sortby == 1 ){
+    $query = "select * from tbl_goods order by price desc limit $startnum, $endnum";
+} else {
+    $query = "select * from tbl_goods order by id desc limit $startnum, $endnum";
+}
+
 $result = mysql_query($query);
 $count = mysql_num_rows($result);
 $num = 0;
@@ -71,16 +94,12 @@ $page = array(
     'currenttime' => getCurrentTime(),
     'login' => $login,
     'name' => "$name",
-    'hastoday' => 1,
-    'today' => array(
-        'id' => 1,
-        'label' => '상품',
-        'title' => '밴쿠버 진천쌀',
-        'price' => 28000,
-        'image' => "http://img1.coupangcdn.com/image/dd/61/63/27936163_7b7104f9-298b-4b32-b452-d95c8430e83a.jpg"
-    ),
+    'hastoday' => $hastoday,
+    'today' => $today,
+    'type' => 0,
     'itemcount' => $count,
     'items' => $items,
+    'currentpage' => $pagenum,
     'prevpage' => $pagenum-1,
     'nextpage' => $pagenum+1,
     'hasprevpage' => $hasprevpage, 

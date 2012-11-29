@@ -132,6 +132,13 @@
             </td>
         </tr>
         <tr>
+            <th width="70">원산지</th>
+            <td style="text-align:left;">
+                <input type="text" id="origin" name="origin" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="originMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
             <th rowspan="2">비고</th>
             <td style="text-align:left;">
             </td>
@@ -278,8 +285,7 @@
         <h4>오늘의 추천상품</h4>
     </div>
     <div class="tab01 btn-group">
-        <button onclick="goSearchType('SOCIAL_DEAL', 'HIT');" class="btn btn-small btn-info"><i class="icon-heart icon-white"></i> 인기순</button>
-        <button onclick="goSearchType('SOCIAL_DEAL', 'BUY_COUNT');" class="btn btn-small "><i class="icon-shopping-cart icon-white"></i> 구매순</button> 
+        <button onclick="goSearchType('SOCIAL_DEAL', 'HIT');" class="btn btn-small btn-info"><i class="icon-heart icon-white"></i>최신순</button>
         <button onclick="goSearchType('SOCIAL_DEAL', 'PRICE_ROW');" class="btn btn-small "><i class="icon-ok icon-white"></i> 가격순</button>
     </div>
 </div>

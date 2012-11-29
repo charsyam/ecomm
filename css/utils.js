@@ -20,11 +20,13 @@ function valueSelect(obj) {
 	obj.select();
 }
 
+/*
 function goSearchType(type, order) {
 	$('#type').val(type);
 	$('#order').val(order);
 	goSearch();
 }
+*/
 
 function goCart(id) {
     if( id == 0 )

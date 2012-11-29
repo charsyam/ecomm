@@ -5,7 +5,6 @@ require 'util.php';
 require 'config.php';
 
 $h2o = new h2o('templates/cart.html');
-
 if( isset( $_GET["id"] ) ) {
     $id = $_GET["id"];
     $value = 1;

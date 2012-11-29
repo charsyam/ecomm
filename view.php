@@ -63,7 +63,8 @@ $page = array(
         'label' => $item['label'],
         'title' => $item['title'],
         'price' => $item['price'],
-        'comment' => $item['comment']
+        'comment' => $item['comment'],
+        'origin' => $item['origin']
     ),
     'seller' => array(
         'name' => $seller['name'],

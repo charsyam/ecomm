@@ -7,11 +7,7 @@
         $label = $_POST["label"];
         $seller = $_POST["seller"];
         $comment = $_POST["comment"];
-
-        print $title;
-        print $price;
-        print $seller;
-        print $comment;
+        $origin =$_POST["origin"];
 
         $file_count = 0;
         for($j=0; $j < count($_FILES["file"]['name']); $j++){
@@ -29,7 +25,7 @@
         $link = mysql_connect( DBHOST, DBUSER, DBPASS ) or die('Could not connect: '.mysql_error());
         mysql_select_db(DBNAME);
 
-        $query = "insert into tbl_goods values( '', '$title', $price, $seller, '', '$comment')";
+        $query = "insert into tbl_goods values( '', '$title', $price, $seller, '', '$origin', '$comment')";
         $result = mysql_query($query);
         $id = mysql_insert_id();
         print $query;

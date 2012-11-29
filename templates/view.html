@@ -97,7 +97,6 @@
 
 
 </div>
-
 <div id="dimmedDiv2" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
     <table style="margin-bottom:10px;width:100%;">
         <tr>
@@ -210,6 +209,13 @@
     </table>
     </form>
 </div>
+<div id="dimmedDiv4" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
+    <table style="margin-bottom:10px;width:100%;">
+    <form id="todayForm" name="todayForm" method="post">
+    <input type="hidden" name="id" id="id" value="{{ page.item.id }}">
+    </form>
+    </table>
+</div>
 <script type="text/javascript">
 //  if ($('#searchForm').val() == '') {
 //      $('#query').focus();
@@ -247,6 +253,20 @@
         return false;
     };
     
+    function setTodayItem() {
+        var dataString = $("#todayForm").serialize();
+        var url = '/ecomm/v1/today.php';
+        $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
+                if (data.status == '200') {
+                window.location.reload(true);
+                } else if (data.status == '501') {
+                $('#addressMessage').html(data.message);
+                } else {
+                $('#addressMessage').html(data.message);
+                }
+                }});
+    }
+
     function signup() {
         var dataString = $("#signupForm").serialize();
         var url = '/ecomm/v1/user.php';
@@ -348,7 +368,7 @@
     </div>
     <div class="tab01 btn-group">
         {% if page.admin %}
-        <button onclick="setTodayItem({{ page.item.id }});" class="btn btn-small btn-info "><i class="icon-shopping-cart icon-white"></i>오늘의 상품</button>
+        <button onclick="setTodayItem();" class="btn btn-small btn-info "><i class="icon-shopping-cart icon-white"></i>오늘의 상품</button>
         <button onclick="goDelete({{page.item.id}});" class="btn btn-small "><i class="icon-hart icon-white"></i>삭제하기</button>
         {% else %}
         <button onclick="goCart(0);" class="btn btn-small btn-info "><i class="icon-shopping-cart icon-white"></i>장바구니</button>
@@ -369,6 +389,7 @@
     <div class="deal2_2_exp">
         <div style="line-height:180%;">
             <span class="label">{{ page.item.price }}</span>
+            <span style="font-size:8pt;color:#888888;">{{ page.item.origin }}</span>&nbsp;
         </div>
 
         <div style="line-height:180%;">
@@ -411,6 +432,24 @@
     </div>
 </div>
 
+<table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr><td><table width=97% align='center'>
+<tr><td>
+ <b>[배송안내]</b><br>
+&nbsp;&nbsp;&nbsp;- 배송기간은 입금확인후 평균 3일 이내로 배송됩니다.<br>
+&nbsp;&nbsp;&nbsp;- 토요일/공휴일은 배송기간에 포함되지 않습니다.(도서 산간지역은 2~3일정도 추가 소요될 수 있습니다.)<br>
+&nbsp;&nbsp;&nbsp;- 제품은 택배로 배송되며 배송비는 무료입니다.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(단, 제주도, 섬의 경우 운임이 더 추가됩니다. 추가되는 배송비는 착불로 배송됩니다.)<br><br>
+ <b>[반품 및 교환안내]</b><br>
+&nbsp;&nbsp;&nbsp;- 교환 및 반품을 원하 실 경우 물건 받으신 날짜에서 24시간내에 당사 고객센터로 연락주세요.<br>
+&nbsp;&nbsp;&nbsp;- 물건에 하자가 있는 경우 착불로 당사로 보내주시면 교환 처리하여 드립니다.<br>
+&nbsp;&nbsp;&nbsp;- 제품에 심각한 이상이 있을경우 당사의 판단하에 교환 및 환불처리 해드립니다.<br><br>
+ <b>[반품 및 교환불가안내]</b><br>
+&nbsp;&nbsp;&nbsp;- 고객의 단순변심에 의한 교환 및 반품은 불가합니다.<br>
+&nbsp;&nbsp;&nbsp;- 본 쇼핑몰에서 판매되는 농산물의경우 특성상 교환이나 반품은 불가합니다.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(단, 제품 배송상 문제 또는 배송중 제품이 손상된경우는 경우에따라 반품 또는 교환해 드립니다.)<br>
+</td></tr></table></td></tr>
+</table>
 
 
             </div>

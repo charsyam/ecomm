@@ -4,6 +4,11 @@ require 'h2o/h2o.php';
 require 'util.php';
 require 'config.php';
 
+
+if( $_SESSION["admin"] != 1 ){
+    exit(-1);
+}
+
 $h2o = new h2o('templates/goods.html');
 
 $link = mysql_connect( DBHOST, DBUSER, DBPASS ) or die('Could not connect: '.mysql_error());
