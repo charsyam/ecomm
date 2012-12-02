@@ -56,17 +56,17 @@
                     
                         <td class="" onclick="goMainMenu('13')">
                             지역
-                            <span style="font-size:8pt;font-weight:normal;">(920)</span>
+                            <span style="font-size:8pt;font-weight:normal;">(0)</span>
                         </td>
                     
                         <td class="" onclick="goMainMenu('34')">
                             여행/레저
-                            <span style="font-size:8pt;font-weight:normal;">(52)</span>
+                            <span style="font-size:8pt;font-weight:normal;">(0)</span>
                         </td>
                     
                         <td class="" onclick="goMainMenu('27')">
                             문화
-                            <span style="font-size:8pt;font-weight:normal;">(20)</span>
+                            <span style="font-size:8pt;font-weight:normal;">(0)</span>
                         </td>
                     
                     </tr>
@@ -371,8 +371,8 @@
         <button onclick="setTodayItem();" class="btn btn-small btn-info "><i class="icon-shopping-cart icon-white"></i>오늘의 상품</button>
         <button onclick="goDelete({{page.item.id}});" class="btn btn-small "><i class="icon-hart icon-white"></i>삭제하기</button>
         {% else %}
-        <button onclick="goCart(0);" class="btn btn-small btn-info "><i class="icon-shopping-cart icon-white"></i>장바구니</button>
-        <button onclick="goCart({{page.item.id}});" class="btn btn-small "><i class="icon-hart icon-white"></i>구매하기</button>
+        <button onclick="goCart(0);" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i>장바구니</button>
+        <button onclick="goCart({{page.item.id}});" class="btn btn-small btn-info"><i class="icon-hart icon-white"></i>구매하기</button>
         {% endif %}
     </div>
 </div>

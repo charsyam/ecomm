@@ -50,17 +50,17 @@
                     
                         <td class="" onclick="goMainMenu('13')">
                             지역
-                            <span style="font-size:8pt;font-weight:normal;">(920)</span>
+                            <span style="font-size:8pt;font-weight:normal;">(0)</span>
                         </td>
                     
                         <td class="" onclick="goMainMenu('34')">
                             여행/레저
-                            <span style="font-size:8pt;font-weight:normal;">(52)</span>
+                            <span style="font-size:8pt;font-weight:normal;">(0)</span>
                         </td>
                     
                         <td class="" onclick="goMainMenu('27')">
                             문화
-                            <span style="font-size:8pt;font-weight:normal;">(20)</span>
+                            <span style="font-size:8pt;font-weight:normal;">(0)</span>
                         </td>
                     
                     </tr>
@@ -84,14 +84,132 @@
 
 <!-- 최근본 상품 -->
 <div id="recentViewBox" style="position:absolute;top:130px;left:50%;margin-left:500px;width:90px;padding:7px 0 4px 0;text-align:left;">
-
-
-
- 
-
-
 </div>
-
+<div id="dimmedDiv2" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
+    <table style="margin-bottom:10px;width:100%;">
+        <tr>
+            <td style="width:50%;text-align:left;"><h4>상품등록</h4></td>
+            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
+        </tr>
+    </table>
+    <form id="registerForm" name="registerForm" method="post" enctype='multipart/form-data' action='v1/upload.php'>
+    <table style="width:100%;margin-bottom:10px;">
+        <tr>
+        </tr>
+        <tr>
+            <th width="70">상품명</th>
+            <td style="text-align:left;">
+                <input type="text" id="title" name="title" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="titleMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">가격</th>
+            <td style="text-align:left;">
+                <input type="text" id="price" name="price" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="priceMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">라벨</th>
+            <td style="text-align:left;">
+                <input type="text" id="label" name="label" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="labelMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">판매자</th>
+            <td style="text-align:left;">
+                <input type="text" id="seller" name="seller" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="sellerMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">원산지</th>
+            <td style="text-align:left;">
+                <input type="text" id="origin" name="origin" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="originMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">비고</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <textarea id="comment" name="comment" style="background:#fff;border:1px solid #e4e4e4;width:100%" rows="3"></textarea>
+                <span id="commentMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">파일</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">파일</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">파일</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">파일</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">파일</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="2">파일</th>
+            <td style="text-align:left;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:left;">
+                <input type="file" name="file[]" id="file" multiple='multiple' style="background:#fff;border:1px solid #e4e4e4;width:100%" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right;">
+                <button class="btn btn-success" id="subscribeBtn" onclick="document.registerForm.submit();return false;">등록</button>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
 <div id="dimmedDiv1" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
     <table style="margin-bottom:10px;width:100%;">
         <tr>
@@ -136,12 +254,28 @@
     
     function loginLayer() {
         dimmed.on();
+        $('#dimmedDiv2').fadeOut(300);
         $('#dimmedDiv1').fadeIn(300);
+    }
+
+    function registerLayer() {
+        dimmed.on();
+        $('#dimmedDiv1').fadeOut(300);
+        $('#dimmedDiv2').fadeIn(300);
+    }
+
+    function goSeller() {
+        window.location = "./seller.php";
+    }
+
+    function goSellingPage() {
+        window.location = "./selling.php";
     }
 
     function dimmedOff() {
         dimmed.off();
         $('#dimmedDiv1').fadeOut(300);
+        $('#dimmedDiv2').fadeOut(300);
         return false;
     };
     
@@ -207,9 +341,9 @@
         <h4>오늘의 추천상품</h4>
     </div>
     <div class="tab01 btn-group">
-        <button onclick="goSearchType('SOCIAL_DEAL', 'HIT');" class="btn btn-small btn-info"><i class="icon-heart icon-white"></i> 인기순</button>
-        <button onclick="goSearchType('SOCIAL_DEAL', 'BUY_COUNT');" class="btn btn-small "><i class="icon-shopping-cart icon-white"></i> 구매순</button> 
-        <button onclick="goSearchType('SOCIAL_DEAL', 'PRICE_ROW');" class="btn btn-small "><i class="icon-ok icon-white"></i> 가격순</button>
+        <button onclick="registerLayer();" class="btn btn-small btn-info">상품등록</button>
+        <button onclick="goSeller();" class="btn btn-small ">판매자관리</button> 
+        <button onclick="goSellingPage();" class="btn btn-small ">판매관리</button>
     </div>
 </div>
 

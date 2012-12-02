@@ -29,10 +29,6 @@
                             <div style="color:#e4e4e4;">{{ page.currenttime }}</div>
                         </td>
                         <td style="text-align:right;width:150px;">
-                        {% if page.admin == 0 %}
-                            <a class="btn btn-mini btn-info" onclick="registerLayer()">Register</a>
-                        {% endif %}
-                            </div>
                         </td>
                     </tr>
                 </table>
@@ -45,18 +41,6 @@
             <td style="width:500px;">
                 <table class="menu">
                     <tr>
-                    
-                        <td class="" onclick="goMainMenu('seller.php')">
-                            판매자관리
-                        </td>
-                    
-                        <td class="" onclick="goMainMenu('goods.php')">
-                            상품관리
-                        </td>
-                    
-                        <td class="" onclick="goMainMenu('history.php')">
-                            판매기록
-                        </td>
                     </tr>
                 </table>            
             </td>
@@ -215,6 +199,7 @@
     </div>
     <div class="tab01 btn-group">
         <button onclick="goDelete();" class="btn btn-small btn-info">판매자 삭제</button>
+        <button onclick="registerLayer();" class="btn btn-small">판매자 등록</button>
     </div>
 </div>
 
