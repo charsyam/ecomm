@@ -11,7 +11,7 @@ $items = array();
 $idlist = "";
 $num = 0;
 foreach( $_SESSION["cart"] as $id => $count ){
-    if( $id=="" )
+    if( $id=="" || $id=="undefined")
         continue;
 
     if ( $num == 0 ){

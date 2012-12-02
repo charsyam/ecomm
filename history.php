@@ -39,6 +39,19 @@ while( $row = mysql_fetch_array($result) )
     array_push( $items, $newitem );
 }
 
+foreach( $items as &$item ){
+    $hid = $item['id'];
+    $query = "select * from tbl_histories_detail where hid=$hid";
+    $result = mysql_query( $query );
+    $goods = "";
+    while( $row = mysql_fetch_array($result) ){
+        $goods .= "<div style='line-height:160%;'>";
+        $goods = $goods."<span class='label'>".$row['title']."(".$row['price']." * ".$row['count'].")</span>";
+        $goods .= "</div>";
+    }
+    $item["goods"] = $goods;
+}
+
 $name = "";
 if ( isset( $_SESSION["name"] ) ){
     $name = $_SESSION["name"];

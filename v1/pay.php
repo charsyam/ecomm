@@ -17,7 +17,7 @@
     $idlist = "";
     $num = 0;
     foreach( $_SESSION["cart"] as $id => $count ){
-        if( $id=="" )
+        if( $id=="" || $id=="undefined" )
             continue;
 
         if ( $num == 0 ){
@@ -78,7 +78,7 @@
             $price = $item['price'];
             $count = $item['count'];
             $title = $item['title'];
-            $query = "insert into tbl_histories_detail values( '', $uid, $itemid, $price, $count, '0', '$title' )";
+            $query = "insert into tbl_histories_detail values( '', $uid, $hid, $itemid, $price, $count, '0', '$title' )";
             $result = mysql_query($query);
         }
         mysql_query("COMMIT");
