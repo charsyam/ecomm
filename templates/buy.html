@@ -33,7 +33,6 @@
                             <a class="btn btn-mini btn-info" onclick="loginLayer()">Login</a>
                             <a class="btn btn-mini " onclick="signupLayer()">Sign Up</a>
                         {% else  %}
-                            <a class="btn btn-mini " onclick="goCart()">Cart</a>
                             <a class="btn btn-mini btn-info" onclick="logoutLayer()">Logout</a>
                         {% endif %}
                             </div>
@@ -51,7 +50,7 @@
                     <tr>
                     
                         <td class="" onclick="goMainMenu('1')">
-                            상품 
+                            쇼핑
                             <span style="font-size:8pt;font-weight:normal;">(1498)</span>
                         </td>
                     
@@ -201,12 +200,79 @@
     <form id="logoutForm" name="logoutForm" method="post">
     <table style="width:100%;margin-bottom:10px;">
         <tr>
-                <span id="logoutMessage" style="color:red"></span>
+            <td colspan="2" style="text-align:right;">
+                <button class="btn btn-success" id="subscribeBtn" onclick="logout();return false;">로그아웃</button>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+<div id="dimmedDiv1" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
+    <table style="margin-bottom:10px;width:100%;">
+        <tr>
+            <td style="width:50%;text-align:left;"><h4>로그인</h4></td>
+            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
+        </tr>
+    </table>
+    <form id="loginForm" name="loginForm" method="post">
+    <table style="width:100%;margin-bottom:10px;">
+        <tr>
         </tr>
         <tr>
         <tr>
+            <th width="70">이메일</th>
+            <td style="text-align:left;">
+                <input type="text" id="email" name="email" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="emailMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">패스워드</th>
+            <td style="text-align:left;">
+                <input type="password" id="password" name="password" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="lpasswordMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2" style="text-align:right;">
-                <button class="btn btn-success" id="subscribeBtn" onclick="logout();return false;">로그아웃</button>
+                <button class="btn btn-success" id="subscribeBtn" onclick="login();return false;">로그인</button>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+<div id="dimmedDiv4" class="corner" style="position:absolute;top:200px;left:50%;margin-left:-220px;width:460px;padding:20px 25px 20px 25px;background:#F2F2F0;color:#383838;display:none; z-index:201;">
+    <table style="margin-bottom:10px;width:100%;">
+        <tr>
+            <td style="width:50%;text-align:left;"><h4>결제 하시겠습니까?</h4></td>
+            <td style="width:50%;text-align:right;"><a href="#" onclick="dimmedOff();"><img src="image/close_01.gif"/></a></td>
+        </tr>
+    </table>
+    <form id="payForm" name="payForm" method="post">
+    <table style="width:100%;margin-bottom:10px;">
+        <tr>
+            <th width="70">결제금액</th>
+            <td style="text-align:left;">
+                <span id="priceMessage">{{ page.totalprice }} (원)</span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">카드번호</th>
+            <td style="text-align:left;">
+                <input type="text" id="email" name="email" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="cardMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <th width="70">패스워드</th>
+            <td style="text-align:left;">
+                <input type="password" id="password" name="password" style="width:100%;background:#fff;border:1px solid #e4e4e4;height:30px;"/>
+                <span id="cardPasswordMessage" style="color:red"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right;">
+                <button class="btn btn-success" id="payBtn" onclick="pay();return false;">결제</button>
             </td>
         </tr>
     </table>
@@ -224,11 +290,13 @@
         dimmed.on();
         $('#dimmedDiv1').fadeOut(300);
         $('#dimmedDiv3').fadeOut(300);
+        $('#dimmedDiv4').fadeOut(300);
         $('#dimmedDiv2').fadeIn(300);
     }
     
     function loginLayer() {
         dimmed.on();
+        $('#dimmedDiv4').fadeOut(300);
         $('#dimmedDiv3').fadeOut(300);
         $('#dimmedDiv2').fadeOut(300);
         $('#dimmedDiv1').fadeIn(300);
@@ -236,9 +304,18 @@
 
     function logoutLayer() {
         dimmed.on();
+        $('#dimmedDiv4').fadeOut(300);
         $('#dimmedDiv1').fadeOut(300);
         $('#dimmedDiv2').fadeOut(300);
         $('#dimmedDiv3').fadeIn(300);
+    }
+
+    function payLayer() {
+        dimmed.on();
+        $('#dimmedDiv1').fadeOut(300);
+        $('#dimmedDiv2').fadeOut(300);
+        $('#dimmedDiv3').fadeOut(300);
+        $('#dimmedDiv4').fadeIn(300);
     }
 
     function dimmedOff() {
@@ -246,19 +323,38 @@
         $('#dimmedDiv1').fadeOut(300);
         $('#dimmedDiv2').fadeOut(300);
         $('#dimmedDiv3').fadeOut(300);
+        $('#dimmedDiv4').fadeOut(300);
         return false;
     };
     
-    function goSearchType(sortby){
-        window.location = "./index.php?page={{ page.currentpage }}&type={{page.type}}&sortby="+sortby;
-    }
-
     function signup() {
         var dataString = $("#signupForm").serialize();
         var url = 'v1/user.php';
         $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
                 if (data.status == '200') {
                 window.location.reload(true);
+                } else if (data.status == '501') {
+                $('#addressMessage').html(data.message);
+                } else {
+                $('#addressMessage').html(data.message);
+                }
+                }});
+    }
+
+    function goModify(id) {
+        var cartForm = document.getElementById("cartForm");
+        var idname = "count" + id;
+        var count = cartForm.elements[idname].value;
+        var url = "./cart.php?id="+id+"&count="+count;
+        window.location.href = url;
+    }
+
+    function goDelete() {
+        var dataString = $("#cartForm").serialize();
+        var url = 'v1/delete_cart.php';
+        $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
+                if (data.status == '200') {
+                window.location.href="cart.php";
                 } else if (data.status == '501') {
                 $('#addressMessage').html(data.message);
                 } else {
@@ -287,16 +383,26 @@
                 if (data.status == '200') {
                 window.location.reload(true);
                 } else if (data.status == '501') {
-                $('#logoutMessage').html(data.message);
+                $('#lpasswordMessage').html(data.message);
                 } else {
-                $('#logoutMessage').html(data.message);
+                $('#lpasswordMessage').html(data.message);
                 }
                 }});
     }
-    function goCart() {
-        window.location = "./cart/php";
+    function pay() {
+        var dataString = $("#payForm").serialize();
+        var url = 'v1/pay.php';
+        $.ajax({type:'POST', url:url, async:false, data:dataString, success:function(data) {
+                window.alert(data.message);
+                if (data.status == '200') {
+                window.location.reload(true);
+                } else if (data.status == '501') {
+                $('#cardPasswordMessage').html(data.message);
+                } else {
+                $('#cardPasswordMessage').html(data.message);
+                }
+                }});
     }
-
     function getKeyword() {
     }
     
@@ -343,82 +449,49 @@
  
 <div style="position:relative;">
     <div style="position:relative;width:250px;">
-        <h4>오늘의 추천상품</h4>
+        <h4>구매하기 {{ page.totalprice }}</h4>
     </div>
     <div class="tab01 btn-group">
-        <button onclick="goSearchType(0);" class="btn btn-small btn-info"><i class="icon-heart icon-white"></i>최신순</button>
-        <button onclick="goSearchType(1);" class="btn btn-small "><i class="icon-ok icon-white"></i> 가격순</button>
+        <button onclick="payLayer()" class="btn btn-small btn-info"><i class="icon-heart icon-white"></i>결제하기</button>
     </div>
 </div>
 
-{% if page.hastoday %} 
 <table class="tb01" style="width:100%;">
-    <tr>
-        <td>
-<div class="deal2-2">
-    <div style="position:relative;width:965px; height:212px; overflow:hidden;">
-        <div style="position:absolute; top:-45px; left:0px; z-index:1;">
-            <a href="/ecomm/view.php?id={{ page.today.id }}"><img src="{{ page.today.image }}" style="width:9500px;height:367px;"/></a>
-        </div>
-    </div>
-
-    <div class="deal2-2_exp fil8">
-        <div style="line-height:180%;">
-            <span class="label">{{ page.today.label }}</span>
-            <span style="color:#fff;font-weight:bold;font-size:12pt;">{{ page.today.title }}</span>
-            <span style="color:#fff;font-weight:bold;font-size:12pt;">{{ page.today.price }}</span>  
-        </div>
-    </div>
-</div></td>
-    </tr>
-</table>
-{% endif %}
-
-
-<table class="tb01" style="width:100%;">
+<form id='cartForm' name='cartForm' method='GET'>
 {% for item in page.items %}
-{{ item.starttag | safe }}
+<tr>
 <td>
-<div class="deal2">
-    <div style="position:relative;width:308px; height:162px; overflow:hidden;">
-        <div style="position:absolute; top:0px; left:-7px; z-index:1;">
-            <a href="view.php?id={{ item.id }}"><img src="{{ item.image }}" style="width:320px;height:162px;"/></a>
-        </div>
-    </div>
-    <div class="deal_exp2">
+<div class="buy2">
+    <div class="buy_exp2">
+        <table>
+        <tr>
+        <td>
+            <img src="{{ item.image }}" style="width:80px;height:80px;"/> 
+        </td><td>
         <div style="line-height:180%;">
             <span class="label">{{ item.label }}</span>
-             <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.title }}</span><br/>
+            <a href="view.php?id={{ item.id }}"><span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.title }}</span></a><br/>
         </div>
         <div style="line-height:160%;">
-            <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.price }}</span>  
-            <!--
-            <span style="font-weight:bold;font-size:8pt;color:#888888;">2012-11-22</span>
-            <span style="font-size:8pt;color:#888888;">까지</span> 
-            -->
+            <span class="label">총 가격</span>
+            <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.realprice }}</span>
         </div>
+        <div style="line-height:160%;">
+            <span class="label">개당 가격</span>
+            <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.price }}</span>
+            <span class="label"> * {{item.count}}</span>
+        </div>
+        </td></tr></table>
     </div>
 </div></td>
     <td width="7px"></td>
-{{ item.endtag | safe }}
+</tr>
 {% endfor %}
+</form>
 </table>
+<div style="position:relative;padding-bottom:3px;width:100%;height:30px;margin-bottom:10px;"></div>
 
  
-<div style="position:relative;padding-bottom:3px;width:100%;height:30px;margin-bottom:10px;">
-    <div class="page01">
-        <ul>
-{% if page.hasprevpage == 1 %}
-            <li onclick="goPage( {{ page.prevpage }} );">이전</li>
-{% endif %}
-{% if page.hasnextpage == 1 %}
-            <li onclick="goPage( {{ page.nextpage }} );">다음</li>
-{% endif %}
-        </ul>
-    </div>
-</div>
-
-
 
             </div>
         </div>

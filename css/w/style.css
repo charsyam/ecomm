@@ -46,6 +46,10 @@ h2 {margin:0;padding:0 0 10px 0;color:#1A1C22;font-family:century gothic;font-we
 .deal_exp2 {padding:3px 0px 0px 0px;position:relative; top:0px; left:0px; width:308px; overflow:hidden;background:#e4e4e4;}
 .deal2:hover {background:#D21A39;}
 
+.buy2 {width:608px;font-size:10pt;padding:7px;background:#e4e4e4;}
+.buy_exp2 {padding:3px 0px 0px 0px;position:relative; top:0px; left:0px; width:608px; overflow:hidden;background:#e4e4e4;}
+.buy2:hover {background:#D21A39;}
+
 .deal2-1 {position:relative;width:637px;font-size:10pt;padding:7px;background:#e4e4e4;}
 .deal2-1_exp {position:absolute;top:7px;left:7px;padding:3px 0;width:637px;overflow:hidden;background:#000;z-index:5;}
 .deal2-1:hover {background:#D21A39;}

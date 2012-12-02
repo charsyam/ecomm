@@ -21,6 +21,7 @@
                 $_SESSION['email'] = $row["email"];
                 $_SESSION["login"] = 1;
                 $_SESSION["name"] = $row["name"];
+                $_SESSION["uid"] = $row["id"];
             }
         }
     }

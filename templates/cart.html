@@ -56,17 +56,17 @@
                     
                         <td class="" onclick="goMainMenu('13')">
                             지역
-                            <span style="font-size:8pt;font-weight:normal;">(920)</span>
+                            <span style="font-size:8pt;font-weight:normal;">(0)</span>
                         </td>
                     
                         <td class="" onclick="goMainMenu('34')">
                             여행/레저
-                            <span style="font-size:8pt;font-weight:normal;">(52)</span>
+                            <span style="font-size:8pt;font-weight:normal;">(0)</span>
                         </td>
                     
                         <td class="" onclick="goMainMenu('27')">
                             문화
-                            <span style="font-size:8pt;font-weight:normal;">(20)</span>
+                            <span style="font-size:8pt;font-weight:normal;">(0)</span>
                         </td>
                     
                     </tr>
@@ -269,6 +269,16 @@
         window.location.href = url;
     }
 
+    function goBuy(){
+        url = "./buy.php";
+        window.location.href = url;
+    }
+
+    function goHistory(){
+        url = "./history.php";
+        window.location.href = url;
+    }
+
     function goDelete() {
         var dataString = $("#cartForm").serialize();
         var url = 'v1/delete_cart.php';
@@ -358,8 +368,8 @@
         <h4>장바구니 {{ page.totalprice }}</h4>
     </div>
     <div class="tab01 btn-group">
-        <button onclick="goSearchType('SOCIAL_DEAL', 'HIT');" class="btn btn-small btn-info"><i class="icon-heart icon-white"></i>구매하기</button>
-        <button onclick="goSearchType('SOCIAL_DEAL', 'BUY_COUNT');" class="btn btn-small "><i class="icon-shopping-cart icon-white"></i>쇼핑계속하기</button> 
+        <button onclick="goBuy()" class="btn btn-small btn-info"><i class="icon-heart icon-white"></i>구매하기</button>
+        <button onclick="goHistory()" class="btn btn-small "><i class="icon-shopping-cart icon-white"></i>구매기록</button> 
         <button onclick="goDelete()" class="btn btn-small ">삭제하기</button> 
     </div>
 </div>
