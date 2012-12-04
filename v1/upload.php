@@ -60,4 +60,4 @@
     }
 ?>
 
-<meta http-equiv="refresh" content="0; url=../goods.php">
+<meta http-equiv="refresh" content="0; url=../admin.php">

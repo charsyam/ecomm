@@ -29,13 +29,6 @@
                             <div style="color:#e4e4e4;">{{ page.currenttime }} {{ page.name }}</div>
                         </td>
                         <td style="text-align:right;width:150px;">
-                        {% if page.login == 0 %}
-                            <a class="btn btn-mini btn-info" onclick="loginLayer()">Login</a>
-                            <a class="btn btn-mini " onclick="signupLayer()">Sign Up</a>
-                        {% else  %}
-                            <a class="btn btn-mini btn-info" onclick="logoutLayer()">Logout</a>
-                        {% endif %}
-                            </div>
                         </td>
                     </tr>
                 </table>
@@ -342,11 +335,11 @@
     }
 
     function goModify(id) {
-        var cartForm = document.getElementById("cartForm");
-        var idname = "count" + id;
-        var count = cartForm.elements[idname].value;
-        var url = "./cart.php?id="+id+"&count="+count;
-        window.location.href = url;
+        var historyForm = document.getElementById("historyForm");
+        var idname = "action" + id;
+        var action= historyForm.elements[idname].value;
+        var url = "./admin_history.php?id="+id+"&action="+action;
+        window.location.href= url;
     }
 
     function goDelete() {
@@ -449,14 +442,14 @@
  
 <div style="position:relative;">
     <div style="position:relative;width:250px;">
-        <h4>구입 목록</h4>
+        <h4>판매 목록</h4>
     </div>
     <div class="tab01 btn-group">
     </div>
 </div>
 
 <table class="tb01" style="width:100%;">
-<form id='cartForm' name='cartForm' method='GET'>
+<form id='historyForm' name='historyForm' method='GET'>
 {% for item in page.items %}
 <tr>
 <td>
@@ -466,7 +459,7 @@
         <tr>
         <td>
         <div style="line-height:160%;">
-            <span class="label">구입시기</span>
+            <span class="label">판매시기</span>
             <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.buytime }}</span>
         </div>
         <div style="line-height:160%;">
@@ -475,7 +468,15 @@
         </div>
         <div style="line-height:160%;">
             <span class="label">상태</span>
-            <span style="color:#000000;font-weight:bold;font-size:12pt;">{{ item.action }}</span>
+            <select name="action{{ item.id }}">
+            <option value="0" {{ item.action0 }} >결제완료</option>
+            <option value="1" {{ item.action1 }} >상품준비중</option>
+            <option value="2" {{ item.action2 }} >발송중</option>
+            <option value="3" {{ item.action3 }} >수령</option>
+            <option value="4" {{ item.action4 }} >취소</option>
+            <option value="5" {{ item.action5 }} >환불</option>
+            </select>
+            <input class="btn btn-small btn-info" type="button" onclick="goModify({{item.id}})" value="변경">
         </div>
         {{ item.goods | safe }}
         </td></tr></table>

@@ -21,15 +21,11 @@ $type = 0;
 
 $json = file_get_contents('http://14.63.227.140/ecomm/v1/today.php');
 $todayjson = json_decode($json);
-print $todayjson;
 $hastoday = 0;
 if( $todayjson->{'status'} == "200" )
     $hastoday = 1;
 
-print $hastoday;
-
 $today = $todayjson->{'today'};
-print $today;
 
 $sortby = 0;
 if ( isset($_GET['sortby']) )
@@ -39,6 +35,16 @@ if( $sortby == 1 ){
     $query = "select * from tbl_goods order by price desc limit $startnum, $endnum";
 } else {
     $query = "select * from tbl_goods order by id desc limit $startnum, $endnum";
+}
+
+if( isset($_GET['keyword']) ){
+    $keyword = $_GET['keyword'];
+    $query = "select * from tbl_goods where title like '%$keyword%'";
+    if( $sortby == 1 ){
+        $query = $query." order by price desc limit $startnum, $endnum";
+    } else {
+        $query = $query." order by id desc limit $startnum, $endnum";
+    }
 }
 
 $result = mysql_query($query);
@@ -99,6 +105,7 @@ $page = array(
     'type' => 0,
     'itemcount' => $count,
     'items' => $items,
+    'keyword' => $keyword,
     'currentpage' => $pagenum,
     'prevpage' => $pagenum-1,
     'nextpage' => $pagenum+1,

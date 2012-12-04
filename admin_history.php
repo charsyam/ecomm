@@ -4,7 +4,7 @@ require 'h2o/h2o.php';
 require 'util.php';
 require 'config.php';
 
-$h2o = new h2o('templates/history.html');
+$h2o = new h2o('templates/admin_history.html');
 
 $items = array();
 
@@ -13,45 +13,48 @@ mysql_select_db(DBNAME);
 
 $total_price =0;
 
-if ( !isset( $_SESSION["uid"] ) )
+if ( !isset( $_SESSION["admin"] ) )
 {
-    echo "로그인이 필요합니다.";
+    echo "관리자 로그인이 필요합니다.";
     return;
 }
 
+if ( isset($_GET["id"]) && isset($_GET["action"] )) {
+    $id = $_GET["id"];
+    $action = $_GET["action"];
+    if( $action != "" && $action != "undefined" ){
+        $query = "update tbl_histories set action=$action where id=$id";
+        $result = mysql_query( $query );
+    }
+}
+
 $uid = $_SESSION["uid"];
-$query = "select * from tbl_histories where uid=$uid";
+$query = "select * from tbl_histories order by id desc";
 $result = mysql_query( $query );
 $num = 0;
 
-while( $row = mysql_fetch_array($result) )
-{
+while( $row = mysql_fetch_array($result) ){
     $id = $row['id'];
     $count = $_SESSION["cart"]["$id"];
     $price = $row['price'];
     $realprice = $count * $price;
     $action = $row['action'];
-    $actionStatus = "";
-    if( $action == 0 ){
-        $actionStatus = "결제완료";
-    } else if( $action == 1) {
-        $actionStatus = "상품준비중";
-    } else if( $action == 2) {
-        $actionStatus = "발송중";
-    } else if( $action == 3) {
-        $actionStatus = "수령";
-    } else if( $action == 4) {
-        $actionStatus = "구매취소";
-    } else if( $action == 5) {
-        $actionStatus = "환불";
-    }
 
     $newitem = array(
                 'id' => $row['id'],
                 'price' => $row['price'],
                 'buytime' => $row['buytime'],
-                'action' => $actionStatus
+                'action' => $action
                 );
+
+    for ( $i = 0; $i < 6; $i++ ){
+        $keyname = "action".$i;
+        $newitem[$keyname] = "";
+        if( $i == $action ){
+            $newitem[$keyname] = "selected";
+        }        
+    }
+
 
     $action = $row['action'];
     array_push( $items, $newitem );
@@ -62,6 +65,7 @@ foreach( $items as &$item ){
     $query = "select * from tbl_histories_detail where hid=$hid";
     $result = mysql_query( $query );
     $goods = "";
+    
     while( $row = mysql_fetch_array($result) ){
         $goods .= "<div style='line-height:160%;'>";
         $goods = $goods."<span class='label'>".$row['title']."(".$row['price']." * ".$row['count'].")</span>";
